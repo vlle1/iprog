@@ -2,7 +2,7 @@
 Interaction Programming Project
 
 ## Setup
-npm run dev
+npm install
 
 ## Develop
 npm run dev
