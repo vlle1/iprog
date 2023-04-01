@@ -59,11 +59,10 @@ export default class ActivityModel {
   doSearch() {
     
     for(let i = 0;i<5;i++) {
-      const promise=[]
-       resolvePromise(recomendedActivities(),promise);
-      {console.log(promise)}
+       resolvePromise(recomendedActivities(),this.promiseState);
+      {console.log(this.promiseState)}
        
-      this.recommendedActivities.push(promise)
+      this.recommendedActivities.push(this.promiseState)
     }
     
      
