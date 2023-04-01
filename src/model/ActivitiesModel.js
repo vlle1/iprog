@@ -17,7 +17,7 @@ export default class ActivityModel {
     this.recommendedActivities = []; //array of activity objects
     this.currentActivity= null;
     this.savedActivities = []; //array of activity objects
-   this.promiseState=[];
+    this.promiseState=[];
     this.filterText = "";
     this.filterPriceLower = null; //could be number
     this.filterPriceUpper = null; //could be number
@@ -60,9 +60,8 @@ export default class ActivityModel {
     
     for(let i = 0;i<5;i++) {
        resolvePromise(recomendedActivities(),this.promiseState);
-      {console.log(this.promiseState)}
-       
       this.recommendedActivities.push(this.promiseState)
+      this.promiseState = [];
     }
     
      
