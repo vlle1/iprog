@@ -3,18 +3,21 @@
  * { "activity": "some activity", "participants": numberOfPeople, "price": numberInEuros}
  * 
 */
+import {recomendedActivities} from "../lib/callAPI";
+import resolvePromise from "../lib/resolvePromise";
 const SAVED_CHANGED = "savedActivitiesChanged";
 const REC_CHANGE = "recommendedActivitiesChanged";
 
 const DEFAULT_RECOMMENDED_ACTIVITIES = 5;
 
-class ActivityModel {
+export default class ActivityModel {
   constructor() {
     this.observers = []; //as in the lab.
-
+    this.currentActivityPromiseState= [];
     this.recommendedActivities = []; //array of activity objects
+    this.currentActivity= null;
     this.savedActivities = []; //array of activity objects
-
+   this.promiseState=[];
     this.filterText = "";
     this.filterPriceLower = null; //could be number
     this.filterPriceUpper = null; //could be number
@@ -53,6 +56,18 @@ class ActivityModel {
     }
     this.notifyObservers(REC_CHANGE);
   }
+  doSearch() {
+    
+    for(let i = 0;i<5;i++) {
+      const promise=[]
+       resolvePromise(recomendedActivities(),promise);
+      {console.log(promise)}
+       
+      this.recommendedActivities.push(promise)
+    }
+    
+     
+  }
 
   //observer:
   addObserver(observer) {
@@ -78,4 +93,4 @@ class ActivityModel {
   1;
 }
 
-export { ActivityModel, SAVED_CHANGED, REC_CHANGE }
+export {  SAVED_CHANGED, REC_CHANGE }

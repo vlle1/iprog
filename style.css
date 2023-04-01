@@ -1,0 +1,10 @@
+.searchResultDiv {
+    text-align: center;
+    display: inline-block;
+    flex-direction: row;
+    width: 200px;
+    margin: 0.5em;
+    border: 4px solid #00F;
+    padding: 0.5em;
+    vertical-align: top;
+}
