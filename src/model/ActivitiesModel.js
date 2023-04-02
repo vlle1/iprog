@@ -13,7 +13,6 @@ const DEFAULT_RECOMMENDED_ACTIVITIES = 5;
 export default class ActivityModel {
   constructor() {
     this.observers = []; //as in the lab.
-    this.currentActivityPromiseState= [];
     this.recommendedActivities = []; //array of activity objects
     this.currentActivity= null;
     this.savedActivities = []; //array of activity objects
@@ -28,17 +27,21 @@ export default class ActivityModel {
 
   addSavedActivity(activity) {
     this.savedActivities.push(activity);
+  
     this.notifyObservers(SAVED_CHANGED);
   }
-  deleteSavedActivity(index) {
-
-    //remove index from savedActivities
-    this.savedActivities.splice(index, 1);
-    this.notifyObservers(SAVED_CHANGED);
+  deleteSavedActivity(activityToDelete) {
+  this.savedActivities=this.savedActivities.filter(removeActivityCB)
+  function removeActivityCB(activity) {
+    return activity.key !== activityToDelete.key;
+  }
+   
   }
 
   getSavedActivities() {
+    console.log(this.savedActivities)
     return this.savedActivities;
+   
   }
 
   getRecommendedActivities() {

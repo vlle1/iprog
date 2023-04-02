@@ -27,8 +27,8 @@ export default {
 
         // callback to save a new activity
         function saveANewActivityACB(activity) {
-            console.log(activity);
-            props.model.addSavedActivity(activity.activity);
+   
+            props.model.addSavedActivity(activity);
         }
         // callback to receive more information about an activity
         function receiveMoreInformationACB(activity) {
