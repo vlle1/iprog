@@ -3,7 +3,7 @@
  * { "activity": "some activity", "participants": numberOfPeople, "price": numberInEuros}
  * 
 */
-import {recomendedActivities} from "../lib/callAPI";
+import {recomendedActivities, recomendedActivitiesFilter} from "../lib/callAPI";
 import resolvePromise from "../lib/resolvePromise";
 const SAVED_CHANGED = "savedActivitiesChanged";
 const REC_CHANGE = "recommendedActivitiesChanged";
@@ -21,6 +21,7 @@ export default class ActivityModel {
     this.filterPriceLower = null; //could be number
     this.filterPriceUpper = null; //could be number
     this.filterPeople = null; //could be number (1, 2 or 3 etc.)
+    this.filteredActivites = []; 
 
     //we don't save the form entries for adding an activity
   }
@@ -42,6 +43,19 @@ export default class ActivityModel {
     console.log(this.savedActivities)
     return this.savedActivities;
    
+  }
+
+  filterApi(people, price, numerOfResults){
+    for(let i = 0;i<numerOfResults;i++) {
+      resolvePromise(recomendedActivitiesFilter(people,price),this.promiseState);
+      this.filteredActivites.push(this.promiseState)
+      this.promiseState = [];    
+   }
+
+
+    //API call with those parameters
+    //activity?participants=1&price=0.1&type=education
+
   }
 
   getRecommendedActivities() {

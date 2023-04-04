@@ -19,6 +19,29 @@ export async function recomendedActivities() {
     return generatorActivity().then(getActvityACB)
     
 }
+//for filter
+export async function generatorActivityFilter(people, price) {
+    if (people != null & price != null) {
+        let query = "participants=1&price<=price"
+        
+    }
+
+
+
+    const url_string= BASE_URL
+    const options= {
+        method: 'GET',
+        headers:{}
+    }
+    return fetch(url_string,options)
+    .then(processResponseToJsonACB)
+}
+
+export async function recomendedActivitiesFilter() {
+    return generatorActivityFilter().then(getActvityACB)
+    
+}
+
 function getActvityACB(activity) {
     return activity
 }
