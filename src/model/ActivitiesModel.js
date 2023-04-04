@@ -46,6 +46,7 @@ export default class ActivityModel {
   }
 
   filterApi(people, price, numerOfResults){
+    this.filteredActivites = [];
     for(let i = 0;i<numerOfResults;i++) {
       resolvePromise(recomendedActivitiesFilter(people,price),this.promiseState);
       this.filteredActivites.push(this.promiseState)
