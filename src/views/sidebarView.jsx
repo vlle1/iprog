@@ -6,20 +6,22 @@ export default function sidebarView(props) {
            
             
             
-            <div>
+            <div className="form-group">
                 <label htmlFor="peopleNr">Number of people</label>
+            </div>
+            <div className="form-group">
                 <input id="peopleNr" value="" />
             </div>
 
-            <div>
+            <div className="form-group">
                 <label htmlFor="priceFilter">Price:</label>
                 <input type="range" id="priceFilter" name="price" min="0" max="10000" value="10000" />
             </div>
-            <div >
+            <div className="form-group">
                 <label for="numOfResults">Number of results wanted:</label>
                 <input id="numOfResults"value=""> Number of results wanted</input>
             </div>
-            <div >
+            <div className="form-group">
                 <button  onClick ={priceFilterCB} > Search</button>
             </div>
         </div>
@@ -30,10 +32,11 @@ export default function sidebarView(props) {
 
     
     function priceFilterCB(event) {
+        var people = document.getElementById("peopleNr").value;
         var price = document.getElementById("priceFilter").value;
         var numOfResults = document.getElementById("numOfResults").value;
 
-        newSeachACB(4, price, numOfResults)
+        newSeachACB(people, price, numOfResults)
         console.log(props.filteredActivitesList)
 
         

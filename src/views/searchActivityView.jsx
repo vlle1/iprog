@@ -27,8 +27,8 @@ export default function SearchActivityView(props) {
     function displayActivitiesCB(activityResult) {
         if (activityResult && activityResult.data) {
             return <span>
-                <div  class = "activityCard">
-                    <div onClick={MoreInformationACB}>{activityResult.data.activity}</div>
+                <div>
+                    <div class="activityName" onClick={MoreInformationACB}>{activityResult.data.activity}</div>
                     <button class="saveButton"onClick={SaveActivityACB}>{isSaved.value ? "Saved" : "Save"}</button>
                 </div>
             </span>
