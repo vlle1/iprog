@@ -13,6 +13,7 @@ export default {
 
 
         return function renderACB(props) {
+            console.log(window.location.pathname)
             return(
                 <sidebarView  
                 recommendedActivities={props.model.recommendedActivities}
