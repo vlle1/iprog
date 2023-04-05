@@ -37,7 +37,7 @@ export default function sidebarView(props) {
         var numOfResults = document.getElementById("numOfResults").value;
 
         newSeachACB(people, price, numOfResults)
-        console.log(props.filteredActivitesList)
+        console.log("priceFilterCB: "+props.filteredActivitesList)
 
         
     }

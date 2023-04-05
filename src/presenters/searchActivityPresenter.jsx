@@ -15,7 +15,7 @@ export default {
         }
         // callback that happens when the component is destroyed
         function ripACB() {
-            console.log("component clean-up");
+            console.log("searchActivity Presenter component clean-up");
         }
 
         //register the callback that happens once the component comes to life

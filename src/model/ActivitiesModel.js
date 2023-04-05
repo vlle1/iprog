@@ -40,7 +40,6 @@ export default class ActivityModel {
   }
 
   getSavedActivities() {
-    console.log(this.savedActivities)
     return this.savedActivities;
    
   }
@@ -101,7 +100,7 @@ export default class ActivityModel {
       try {
         obs(message);
       } catch (e) {
-        console.log(e);
+        console.log("failed calling observer: " + e);
       }
     }
     this.observers.forEach(invokeObserverCB);

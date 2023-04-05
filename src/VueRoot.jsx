@@ -21,10 +21,6 @@ const router = createRouter({
       component: <SavedActivities model={myModel}/>
     },
     {
-      path:"/saved",
-      component: <SavedActivities model={myModel}/>
-    },
-    {
       path: "/details",
       component: <Details model={myModel}/>
   }
@@ -34,7 +30,6 @@ const router = createRouter({
 const VueRoot = {
   setup() {
     //const load = reactive({});
-    console.log("setup")
     return function renderACB() {
       return (
         <div class ="flexParent"> 

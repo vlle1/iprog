@@ -5,14 +5,14 @@ export default function savedActivitiesView(props) {
             <h1>Saved Activities</h1>
             <button onClick={GoToRecommendedActivitiesACB}>Recommended Activities</button>
             <div>
-            {console.log(props.savedActivities)}
+            {console.log("SAVED ACTIVITIES:" + props.savedActivities)}
                 {props.savedActivities.map(displaySavedActivitiesCB)}
             </div>
         </div>
     )
     function displaySavedActivitiesCB(savedActivity) {
         return <span>
-                {console.log(savedActivity)}
+                {console.log("Saved activity:"+ savedActivity)}
                 <div onClick={MoreInformationACB}>{savedActivity.activity}</div>
                 <button onClick={UnsaveActivityACB}>Unsave</button>
         </span>
