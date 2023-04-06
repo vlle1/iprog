@@ -1,5 +1,6 @@
 import { routeLocationKey } from "vue-router";
 import sidebarView from "../views/sidebarView";
+import savedSidebarView from "../views/savedSidebarView";
 import { reactive } from "vue";
 
 
@@ -15,6 +16,10 @@ export default {
     function handleActivitesACB(people, price, numOfResults) {
       props.model.filterApi(people, price, numOfResults);
     }
+
+    function handleSavedActivitesACB(people, price) {
+        props.model.filterSavedActivites(people, price);
+      }
     
     return function renderACB(props) {
       const path = this.$router.currentRoute._value.path;
@@ -32,10 +37,9 @@ export default {
         return (
           <div>
             <h3>TODO different SIDEBARVIEW (savedSidebarView)</h3>
-            <sidebarView
-              recommendedActivities={props.model.recommendedActivities}
-              filteredActivitesFunc={handleActivitesACB}
-              filteredActivitesList={props.model.filteredActivites}
+            <savedSidebarView
+              savedActivites={props.model.savedActivities}
+              filteredSavedActivitesFunc={handleSavedActivitesACB}
             />
           </div>
         );
