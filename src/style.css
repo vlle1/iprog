@@ -57,6 +57,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
@@ -64,6 +65,11 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.saveButton {
+  display: flex;
+  
 }
 
 .card {
@@ -90,9 +96,14 @@ button:focus-visible {
   }
 }
 
+.mainContent {
+  margin-left: 220px; 
+  float: left;
+}
+
 .sidebar {
   height: 100%;
-  width: 200px;
+  width: 300px;
   top: 0;
   left: 0;
   position: fixed;
@@ -101,14 +112,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: top;
-  align-items: center;
+  align-items: left;
   flex-wrap: wrap;
-}
-
-
-.mainContent {
-  margin-left: 220px; 
-  float: left;
 }
 
 .sidebar h2 {
@@ -120,18 +125,38 @@ button:focus-visible {
 .sidebar label {
   margin-top: 0;
   text-align: center;
-  color: white;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 0;
   text-decoration: underline;
-  margin-bottom: 10px;
   margin-left: 10px;
 }
 
-
-
-.sidebar input {
+.search-bar {
+  margin-left: 20px;
+  width: 100%;
+  max-width: 220px;
+  height: 30px;
+  background:#333;
+  display: flex;
+  border-radius: 15px;
+  margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.search-bar input {
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-size: 15px;
+  color: rgb(255, 255, 255)
+}
+
+.sidebar button {
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 
@@ -144,6 +169,21 @@ button:focus-visible {
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 30px;
+}
+
+.activityCard{
+  background-color: #ededed;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.activityCard:hover{
+  background-color:#dbdbdb
 }
 
 
