@@ -185,5 +185,14 @@ button:focus-visible {
 .activityCard:hover{
   background-color:#dbdbdb
 }
+@media (prefers-color-scheme: dark) {
+  .activityCard{
+    background-color: #3d3d3d;
+  }
+  
+  .activityCard:hover{
+    background-color:#555555
+  }
+}
 
 
