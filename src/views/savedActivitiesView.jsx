@@ -13,8 +13,8 @@ export default function savedActivitiesView(props) {
     function displaySavedActivitiesCB(savedActivity) {
         return <span>
                 {console.log("Saved activity:"+ savedActivity)}
-                <div onClick={MoreInformationACB}>{savedActivity.activity}</div>
-                <button onClick={UnsaveActivityACB}>Unsave</button>
+                <div class="activityCard" onClick={MoreInformationACB}>{savedActivity.activity}</div>
+                <button class="saveButton" onClick={UnsaveActivityACB}>Unsave</button>
         </span>
          function UnsaveActivityACB() {
             props.unsaveActivity(savedActivity)

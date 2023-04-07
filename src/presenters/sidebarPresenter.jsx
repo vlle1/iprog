@@ -1,5 +1,5 @@
 import { routeLocationKey } from "vue-router";
-import sidebarView from "../views/sidebarView";
+import sidebarView from "../views/recommendedSidebarView";
 import savedSidebarView from "../views/savedSidebarView";
 import { reactive } from "vue";
 
@@ -36,7 +36,6 @@ export default {
         console.log("saved");
         return (
           <div>
-            <h3>TODO different SIDEBARVIEW (savedSidebarView)</h3>
             <savedSidebarView
               savedActivites={props.model.savedActivities}
               filteredSavedActivitesFunc={handleSavedActivitesACB}

@@ -1,4 +1,4 @@
-import SearchActivityView from "../views/searchActivityView";
+import SearchActivityView from "../views/recommendedActivityView";
 import { onMounted, onUnmounted } from "vue";
 export default {
     name: "Search",

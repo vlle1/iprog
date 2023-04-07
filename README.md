@@ -1,5 +1,7 @@
-# iprog
+# The Bored Board
 Interaction Programming Project
+
+[Deployed Version](https://iprog-bored-board.web.app/#/)
 
 ## Setup
 npm install
@@ -8,50 +10,55 @@ npm install
 npm run dev
 
 ## Short description of our project
-Our project is connected to an API (Bored API) which gives randomized suggestions for activities you can do when you are bored. We added functionality so that recommended activities can be suggested and the user can also save activities they want to do in the future.   
+Our project is connected to the [Bored API](https://www.boredapi.com/)  which gives randomized suggestions for activities you can do when you are bored. We added functionality so that recommended activities can be suggested and the user can also save activities they want to do in the future [not persistent yet].
 
-## What you have done
+## What we have done
 •	Model and API connection 
 
 •	View for recommended activities and saved activities
 
 •	Sidebar for filtering recommended activities and saved activities
 
-•	Detalis for every activity
+•	Details for every activity
 
 •	Some styling
 
+•	Support Dark Mode
+
+
 ## What we still plan to do
-•	Improve styling
+We have a [mock-up](/project_documents/Project%20proposal.pdf) that shows how the project could look like when it is done.
+
+Important parts:
+
+•	Persistance
 
 •	Login page
 
+•	complete Sidebar
+
 ## File structure
-Only explain the files that are relevant to the project. 
 
 **src /**
 -	style: all the CSS styling
--	VueRoot: routing for our project
--	index: index for our routing  
+-	VueRoot: base entry point with routing
 
 **src / lib:**
--	apiConfig: base URL for API
--	callAPI: fetch information from API
--	promiseNoData: when no data is being promised 
--	resolvePromise: resolve the promise 
+-	callAPI: interface to fetch information from API
+-	resolvePromise: resolve the promise (same as in the lab)
 
 **src / model:**
--	ActivitiesModel: the model which makes all the computation 
+-	ActivitiesModel: the model for the activities, using observer pattern
 
 **src / presenters:**
--	detailPresenter: presenter for details about activity
+-	detailPresenter: presenter for details about an activity
 -	savedActivitesPresenter: presenter for the activities that the user has saved 
--	searchActivityPresenter: presenter for recommended activities
+-	recommendedActivityPresenter: presenter for recommended activities
 -	sidebarPresenter: presenter for the sidebar, returns two different views depending if the user are looking on the saved or recommended activities
 
-**src / presenters:**
+**src / views:**
 -	detailView: view for details about activity
 -	savedActivitesView: view for the activities that the user has saved 
--	searchActivityView: view for recommended activities
--	sidebarView: view for the sidebar when looking at the recommended activities
+-	recommendedActivityView: view for recommended activities
+-	recommendedSidebarView: view for the sidebar when looking at the recommended activities
 -	savedSidebarView: view for the sidebar when looking at the saved activities

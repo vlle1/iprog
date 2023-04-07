@@ -3,7 +3,7 @@ import {  reactive } from "vue";
 import { createRouter, createWebHashHistory, RouterView } from "vue-router";
 import Model from "./model/ActivitiesModel"
 import Details from "./presenters/detailPresenter";
-import Search from "./presenters/searchActivityPresenter"
+import Search from "./presenters/recommendedActivityPresenter"
 import SavedActivities from "./presenters/savedActivitiesPresenter"
 import Sidebar from "./presenters/sidebarPresenter"
 const myModel= reactive(new Model());
