@@ -1,44 +1,59 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+
+    --ground: #242424;
+    --card: #3d3d3d;
+    --card-hover: #646464;
+    --button: #333;
+    --main: rgba(255, 255, 255, 0.87);
+    --interact: #646cff;
+
+    --sidebar-ground: darkslategrey;
+    --sidebar-card: #333333;
+    --sidebar-main: #ffffff;
+    --sidebar-hint: #a1a1a1;
+    
+    --nav-active: darkslategrey;
+    --nav: rgb(119, 197, 197);
+    --nav-hover: rgba(47,79,79,0.5);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ground: #ffffff;
+    --card: #e9e9e9;
+    --card-hover: #dbdbdb;
+    --button: #f9f9f9;
+    --main: #213547;
+    --interact: #646cff;
+
+    --sidebar-ground: darkslategrey;
+    --sidebar-card: #333333;
+    --sidebar-main: #ffffff;
+    --sidebar-hint: #a1a1a1;
+    --sidebar-button: #1a1a1a;
+
+    --nav: darkslategrey;
+    --nav-hover: rgba(119, 197, 197, 0.2);
+  }
+}
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: var(--main);
+  background-color: var(--ground);
+  width: 100%;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  padding-left: 200px;
+  padding-left: 20em;
+  width: 100%-20em;
 }
 
 h1 {
@@ -53,60 +68,34 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 .saveButton {
   text-align: right;
+  background-color: var(--button);
+}
+.saveButton:hover {
+  border-color: var(--interact);
 }
 
 .card {
   padding: 2em;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: right;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 .mainContent {
-  margin-left: 220px; 
   float: left;
+  padding: 2em 7em 0 7em;
 }
 
 .sidebar {
   height: 100%;
-  width: 300px;
+  width: 20em;
   top: 0;
   left: 0;
   position: fixed;
-  background-color: darkslategrey;
+  background-color: var(--sidebar-ground);
   padding-top: 20px;
   display: flex;
   flex-direction: column;
@@ -118,13 +107,13 @@ button:focus-visible {
 .sidebar h2 {
   margin-top: 0;
   text-align: center;
-  color: white;
+  color: var(--sidebar-main);
 }
 
 .sidebar label {
   margin-top: 0;
   text-align: center;
-  color: #ffffff;
+  color: var(--sidebar-main);
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 0;
@@ -137,7 +126,7 @@ button:focus-visible {
   width: 100%;
   max-width: 220px;
   height: 30px;
-  background:#333;
+  background: var(--sidebar-card);
   display: flex;
   border-radius: 15px;
   margin-top: 10px;
@@ -150,28 +139,19 @@ button:focus-visible {
   border: 0;
   outline: none;
   font-size: 15px;
-  color: rgb(255, 255, 255)
+  color: var(--sidebar-main);
 }
 
 .sidebar button {
   margin-top: 20px;
   margin-left: 20px;
+  background-color: var(--sidebar-main);
+  color: var(--sidebar-ground);
 }
 
-
-.activityName{
+.activityCard {
   cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-top: 30px;
-}
-
-.activityCard{
-  background-color: #ededed;
+  background-color: var(--card);
   margin-top: 40px;
   margin-bottom: 5px;
   margin-right: 20px;
@@ -182,17 +162,30 @@ button:focus-visible {
   min-width: 500px;
 }
 
-.activityCard:hover{
-  background-color:#dbdbdb
+.activityCard:hover {
+  background-color: var(--card-hover);
 }
-@media (prefers-color-scheme: dark) {
-  .activityCard{
-    background-color: #3d3d3d;
-  }
+
+
+.topbar {
+  display: flex;
+}
+.nav {
+  border-radius: 0;
+  background-color: var(--card);
+  font-size: 1.3em;
+  width: 100%;
+  min-width: 75px;
+  flex-shrink: 2.25;
+  color: var(--nav);
+  border-width: 0 0 2px 0;
+}
+
+button.nav:disabled{
+  border-color: var(--nav);
+  font-weight: bold;
+}
+button.nav:hover:enabled{
+  background-color: var(--nav-hover);
   
-  .activityCard:hover{
-    background-color:#555555
-  }
 }
-
-

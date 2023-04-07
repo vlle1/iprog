@@ -1,7 +1,6 @@
 export default function detailView(props){
     return(
-    <div> {console.log("DETAIL VIEW:" + props)}
-        {console.log("DETAIL VIEW ACTIVITIES:" + props.activity)}
+    <div>
         <h1>{props.activity.activity}</h1>
         <div>Accessibility: {
             props.activity.accessibility === "" ? "No info" : props.activity.accessibility

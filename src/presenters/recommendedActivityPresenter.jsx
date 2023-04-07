@@ -1,7 +1,7 @@
-import SearchActivityView from "../views/recommendedActivityView";
+import RecommendedActivityView from "../views/recommendedActivityView";
 import { onMounted, onUnmounted } from "vue";
 export default {
-    name: "Search",
+    name: "Recommended",
     props: ["model"],
     setup(props) {
         // callback that happens once the component comes to life
@@ -15,7 +15,7 @@ export default {
         }
         // callback that happens when the component is destroyed
         function ripACB() {
-            console.log("searchActivity Presenter component clean-up");
+            //console.log("recommendedActivity Presenter component clean-up");
         }
 
         //register the callback that happens once the component comes to life
@@ -41,7 +41,7 @@ export default {
 
 
 
-                <SearchActivityView
+                <RecommendedActivityView
                     saveActivity={saveANewActivityACB}
                     getActivity={receiveMoreInformationACB}
                     activityResults={props.model.recommendedActivities}

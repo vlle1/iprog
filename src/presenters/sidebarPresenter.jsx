@@ -33,14 +33,11 @@ export default {
         );
       }
       if (path === "/saved") {
-        console.log("saved");
         return (
-          <div>
             <savedSidebarView
               savedActivites={props.model.savedActivities}
               filteredSavedActivitesFunc={handleSavedActivitesACB}
             />
-          </div>
         );
       }
       return "";

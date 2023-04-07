@@ -2,7 +2,7 @@ export default function sidebarView(props) {
 
     return (
         <div>
-            <h2>Search in your <br></br>Saved Activites</h2>
+            <h2>Search in your<br/>Saved Activites</h2>
            
             <div class="search-bar">
                 <input id="peopleNr" value="" placeholder="Number of people:"/>
