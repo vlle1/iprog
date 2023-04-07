@@ -68,8 +68,7 @@ button:focus-visible {
 }
 
 .saveButton {
-  display: flex;
-  
+  text-align: right;
 }
 
 .card {
@@ -173,13 +172,14 @@ button:focus-visible {
 
 .activityCard{
   background-color: #ededed;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin-top: 40px;
+  margin-bottom: 5px;
+  margin-right: 20px;
   border-radius: 10px;
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-width: 500px;
 }
 
 .activityCard:hover{

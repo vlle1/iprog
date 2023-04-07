@@ -1,14 +1,6 @@
 import { ref, watch } from "vue";
 export default function SearchActivityView(props) {
-    var isSaved = ref(false);
-    console.log(isSaved);
-
-    watch(isSaved, (newValue) => {
-        const button = document.querySelector(".saveButton");
-        if (button) {
-          button.textContent = newValue ? "Saved" : "Save";
-        }
-    });
+    // var isSaved = ref(false);
 
 
     return (
@@ -34,14 +26,17 @@ export default function SearchActivityView(props) {
     function displayActivitiesCB(activityResult) {
         if (activityResult && activityResult.data) {
             return <span>
-                <div class="activityCard" onClick={MoreInformationACB}>{activityResult.data.activity}
-                    <button id="activity" class="saveButton"onClick={SaveActivityACB}>Save</button>
+                <div>
+                    <div class="activityCard" onClick={MoreInformationACB}>{activityResult.data.activity}</div>
+                    <button id="activity" disabled={props.savedActivity} class="saveButton"onClick={SaveActivityACB}>Save</button>
                 </div>
             </span>
         }
         
         function SaveActivityACB() {
-            isSaved.value = true;
+            // const button = document.querySelector(".saveButton");
+            // button.textContent = "Saved";
+            // isSaved.value = true;
             props.saveActivity(activityResult.data)
 
         }
