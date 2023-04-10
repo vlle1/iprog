@@ -14,7 +14,7 @@ export default class ActivityModel {
   constructor() {
     this.observers = []; //as in the lab.
     this.recommendedActivities = []; //array of activity objects
-    this.currentActivity= null;
+    this.currentActivity= null; //to view details of an activity.
     this.savedActivities = []; //array of activity objects
     this.promiseState=[];
     this.filterText = "";
@@ -23,7 +23,7 @@ export default class ActivityModel {
     this.filterPeople = null; //could be number (1, 2 or 3 etc.)
     this.filteredActivites = []; 
     this.savedfilteredActivites = [];
-
+    this.test = "";
     //we don't save the form entries for adding an activity
   }
 

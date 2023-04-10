@@ -1,12 +1,15 @@
 // Add relevant imports
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import { createRouter, createWebHashHistory, RouterView } from "vue-router";
 import Model from "./model/ActivitiesModel";
 import Details from "./presenters/detailPresenter";
 import Recommended from "./presenters/recommendedActivityPresenter";
 import SavedActivities from "./presenters/savedActivitiesPresenter";
 import Sidebar from "./presenters/sidebarPresenter";
+import emptySidebarView from "./views/emptySidebarView";
 import Topbar from "./views/topbarView";
+import { firebaseModelPromise } from "./model/firebaseModel";
+
 const myModel = reactive(new Model());
 //the routes are also used in the topbarView!
 const routes = [
@@ -36,21 +39,38 @@ const router = createRouter({
 });
 const VueRoot = {
   setup() {
-    //const load = reactive({});
+    const load = reactive({ loaded: false });
+    onMounted(() => {
+      //it promises to load!
+      firebaseModelPromise(myModel).then(() => (load.loaded = true));
+    });
     return function renderACB() {
       return (
         <div class="flexParent">
-          <div class="sidebar">
-            <Sidebar model={myModel} />
-          </div>
+            {
+              load.loaded ? (
+                <Sidebar
+                  model={myModel}
+                /> /* the sidebar does routing on its own. */
+              ) : (
+                <emptySidebarView/>
+              ) /* would be an alternative */
+            }
 
-          <Topbar></Topbar>
+          <Topbar routes={routes}></Topbar>
           <div class="mainContent">
-            <RouterView></RouterView>
+            {load.loaded ? (
+              <RouterView></RouterView>
+            ) : (
+              <div>
+                <h2 loading>Loading...</h2>
+                <img src="https://cdn-images-1.medium.com/max/800/0*4Gzjgh9Y7Gu8KEtZ.gif"></img>
+              </div>
+            )}
           </div>
         </div>
       );
     };
   },
 };
-export { VueRoot, router, routes };
+export { VueRoot, router };

@@ -1,16 +1,16 @@
 import { routeLocationKey } from "vue-router";
 import { reactive } from "vue";
-import { routes } from "../VueRoot";
+
 export default {
   name: "Topbar",
-  props: ["model"],
+  props: ["routes"],
   watch: {
     $route(to, from) {
       this.$forceUpdate();
     },
   },
-  setup(props) {
-    return function renderACB(props) {
+  setup() {
+    return function renderACB({routes}) {
       const path = this.$router.currentRoute._value.path;
       const topbarPages = routes.filter((route) => route.showInTopBar);
       return (

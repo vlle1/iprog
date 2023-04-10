@@ -1,7 +1,7 @@
 export default function sidebarView(props) {
 
     return (
-        <div>
+        <div class="sidebar">
             <h2>Search in your<br/>Saved Activites</h2>
            
             <div class="search-bar">

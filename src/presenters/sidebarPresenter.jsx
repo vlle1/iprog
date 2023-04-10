@@ -1,6 +1,7 @@
 import { routeLocationKey } from "vue-router";
 import sidebarView from "../views/recommendedSidebarView";
 import savedSidebarView from "../views/savedSidebarView";
+import emptySidebarView from "../views/emptySidebarView.jsx";
 import { reactive } from "vue";
 
 
@@ -40,7 +41,7 @@ export default {
             />
         );
       }
-      return "";
+      return <emptySidebarView/>;
     };
   },
 };
