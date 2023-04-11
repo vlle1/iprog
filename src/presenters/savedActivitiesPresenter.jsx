@@ -1,4 +1,4 @@
-import savedActivitiesView from "../views/savedActivitiesView";
+import savedActivitiesView from "../views/content/savedActivitiesView";
 export default {
     name: "SavedActivities",
     props: ["model"],

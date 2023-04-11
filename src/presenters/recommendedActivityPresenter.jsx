@@ -1,4 +1,4 @@
-import RecommendedActivityView from "../views/recommendedActivityView";
+import RecommendedActivityView from "../views/content/recommendedActivityView";
 import { onMounted, onUnmounted } from "vue";
 export default {
     name: "Recommended",

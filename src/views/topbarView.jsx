@@ -12,7 +12,7 @@ export default {
   setup() {
     return function renderACB({routes}) {
       const path = this.$router.currentRoute._value.path;
-      const topbarPages = routes.filter((route) => route.showInTopBar);
+      const topbarPages = routes.filter((route) => route.showInTopBar());
       return (
         <div class="topbar">
           {topbarPages.map((page) => (

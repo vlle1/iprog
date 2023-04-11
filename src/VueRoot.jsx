@@ -6,9 +6,13 @@ import Details from "./presenters/detailPresenter";
 import Recommended from "./presenters/recommendedActivityPresenter";
 import SavedActivities from "./presenters/savedActivitiesPresenter";
 import Sidebar from "./presenters/sidebarPresenter";
-import emptySidebarView from "./views/emptySidebarView";
+import emptySidebarView from "./views/sidebar/emptySidebarView";
+import signUpPresenter from "./presenters/signUpPresenter";
 import Topbar from "./views/topbarView";
 import { firebaseModelPromise } from "./model/firebaseModel";
+import LogInPresenter from "./presenters/logInPresenter";
+import Logout from "./presenters/logoutPresenter";
+import { getAuth } from "firebase/auth";
 
 const myModel = reactive(new Model());
 //the routes are also used in the topbarView!
@@ -16,21 +20,45 @@ const routes = [
   {
     path: "/",
     component: <Recommended model={myModel} />,
-    showInTopBar: true,
+    showInTopBar: () => true,
     displayName: "Recommended Activities",
   },
   {
     path: "/saved",
     component: <SavedActivities model={myModel} />,
-    showInTopBar: true,
+    showInTopBar: () => true,
     displayName: "Saved Activities",
   },
   {
     path: "/details",
     component: <Details model={myModel} />,
-    showInTopBar: false,
+    showInTopBar: () => false,
     displayName: "Details",
   },
+  {
+    path: "/signup",
+    component: <signUpPresenter/>,
+    showInTopBar: () => false,
+    displayName: "Sign Up",
+  },
+  {
+    path: "/login",
+    component: <LogInPresenter/>,
+    showInTopBar: () => {
+      //hide if logged in:
+      return getAuth().currentUser == null;
+    },
+    displayName: "Log In",
+  },
+  {
+    path: "/logout",
+    component: <Logout></Logout>,
+    showInTopBar: () => {
+      //hide if logged out:
+      return getAuth().currentUser != null;
+    },
+    displayName: "Log Out",
+  }
 ];
 
 const router = createRouter({
@@ -62,10 +90,7 @@ const VueRoot = {
             {load.loaded ? (
               <RouterView></RouterView>
             ) : (
-              <div>
-                <h2 loading>Loading...</h2>
-                <img src="https://cdn-images-1.medium.com/max/800/0*4Gzjgh9Y7Gu8KEtZ.gif"></img>
-              </div>
+                <img class="loading" src="https://cdn-images-1.medium.com/max/800/0*4Gzjgh9Y7Gu8KEtZ.gif"></img>
             )}
           </div>
         </div>

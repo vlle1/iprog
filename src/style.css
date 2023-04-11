@@ -16,6 +16,9 @@
     --nav-active: darkslategrey;
     --nav: rgb(119, 197, 197);
     --nav-hover: rgba(47,79,79,0.5);
+
+    --error-text: #3a0000;
+    --error-card: rgba(255,0,0,.2);
   }
 }
 
@@ -36,6 +39,9 @@
 
     --nav: darkslategrey;
     --nav-hover: rgba(119, 197, 197, 0.2);
+
+    --error-text: #b70000;
+    --error-card: rgba(255,0,0,.2);
   }
 }
 :root {
@@ -188,4 +194,20 @@ button.nav:disabled{
 button.nav:hover:enabled{
   background-color: var(--nav-hover);
   
+}
+
+
+img.loading {
+  width: 100%;
+}
+
+.error {
+  color: var(--error-text);
+  background-color: var(--error-card);
+  text-decoration: solid;
+  border-color: var(--error-text);
+  border-radius: 5px;
+  border-width: 2px;
+  padding: 1em;
+  width: 100%;
 }

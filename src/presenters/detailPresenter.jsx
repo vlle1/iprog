@@ -1,4 +1,4 @@
-import DetailView from "../views/detailView";
+import DetailView from "../views/content/detailView";
 
 export default {
     name: "Details",
