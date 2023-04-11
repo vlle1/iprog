@@ -1,5 +1,5 @@
 import logIn from "../views/auth/logIn";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInAnonymously } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 export default {
@@ -31,10 +31,27 @@ export default {
         });
     }
     function loginGoogle() {
-        //currentError.value = "Not implemented yet"; //TODO
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(getAuth(), provider)
+        .then((data) => {
+            console.log("Successfully logged in.");
+            router.push("/");
+            }
+        )
+        .catch((error) => {
+            currentError.value = error.code;
+        });
     }
     function loginAnonymous() {
-        //currentError.value = "Not implemented yet"; //TODO
+        signInAnonymously(getAuth())
+        .then((data) => {
+            console.log("Successfully logged in.");
+            router.push("/");
+            }
+        )
+        .catch((error) => {
+            currentError.value = error.code;
+        });
     }
     return function render() {
       return (

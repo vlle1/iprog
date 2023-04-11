@@ -31,13 +31,12 @@ export default {
             </button>
           </p>
           </form>
-          <p>
-            <button onClick={() => props.google()}>Sign In With Google</button>
-          </p>
-          <p>
-            <button onClick={() => props.anonymous()}>Anonymous</button>
-          </p>
           <p>New? <a href="/#/signup">Sign up here.</a></p>
+          <div style="display:flex;align-itmes:center;"><hr style="height:0px;width:33%"></hr>or<hr style="height:0px;width:33%"></hr></div>
+            <button onClick={() => props.google()}>Sign In With Google</button>
+            <button onClick={() => props.anonymous()}>Stay Anonymous</button>
+
+          
         </div>
       );
     };
