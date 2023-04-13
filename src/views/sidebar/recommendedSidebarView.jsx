@@ -1,12 +1,15 @@
 export default function sidebarView(props) {
   return (
     <div class="sidebar">
-      <h2>Filter</h2>
+      <h2>Sidebar</h2>
 
       {/* <div className="form-group">
                 <label htmlFor="peopleNr">Number of people</label>
             </div> */}
       <div class="rectangle">
+      <div style="font-size: 16px; font-weight: bold; color: black; text-align: center;">
+                Find a saved activity
+            </div>
         <div class="search-bar">
           <input id="peopleNr" value="" placeholder="Number of people:" />
         </div>

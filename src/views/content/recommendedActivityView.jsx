@@ -18,7 +18,7 @@ export default function RecommendedActivityView(props) {
       return (
         <span>
           <div>
-            <div class="activityCard" onClick={MoreInformationACB}>
+            <div class="activityCard2" >
               {activityResult.data.activity}
             </div>
             <button
@@ -40,9 +40,6 @@ export default function RecommendedActivityView(props) {
       // isSaved.value = true;
       props.saveActivity(activityResult.data);
     }
-    function MoreInformationACB() {
-      props.getActivity(activityResult.data);
-      window.location.hash = "#/details";
-    }
+
   }
 }

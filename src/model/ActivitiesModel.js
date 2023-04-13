@@ -33,6 +33,7 @@ export default class ActivityModel {
     this.notifyObservers(SAVED_CHANGED);
   }
   deleteSavedActivity(activityToDelete) {
+    console.log(activityToDelete)
   this.savedActivities=this.savedActivities.filter(removeActivityCB)
   function removeActivityCB(activity) {
     return activity.key !== activityToDelete.key;

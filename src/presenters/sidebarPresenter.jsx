@@ -21,6 +21,10 @@ export default {
     function handleSavedActivitesACB(people, price) {
         props.model.filterSavedActivites(people, price);
       }
+    function createANewActivityACB(activity) {
+      props.model.addSavedActivity(activity)
+
+    }
     
     return function renderACB(props) {
       const path = this.$router.currentRoute._value.path;
@@ -38,6 +42,7 @@ export default {
             <savedSidebarView
               savedActivites={props.model.savedActivities}
               filteredSavedActivitesFunc={handleSavedActivitesACB}
+              saveNewActivity={createANewActivityACB}
             />
         );
       }

@@ -99,14 +99,23 @@ button {
   border-radius: 20px 20px 20px 20px;
   width: 310px;
   margin-left:1px ;
-  height: 200px; 
+  height: 220px; 
+
 }
 .rectangle2{
   border: 3px solid black;
   border-radius: 20px 20px 20px 20px;
   width: 310px;
   margin-left:1px ;
-  height: 160px; 
+  height: 180px; 
+  margin-bottom: 50px;
+}
+.rectangle3{
+  border: 3px solid black;
+  border-radius: 20px 20px 20px 20px;
+  width: 310px;
+  margin-left:1px ;
+  height: 340px; 
 }
 .sidebar {
   height: 100%;
@@ -179,6 +188,17 @@ button {
   padding-top: 10px;
   padding-bottom: 10px;
   min-width: 500px;
+}
+.activityCard2{
+  margin-top: 40px;
+  margin-bottom: 5px;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-width: 500px;
+
 }
 
 .activityCard:hover {
