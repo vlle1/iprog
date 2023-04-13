@@ -94,7 +94,20 @@ button {
   float: left;
   padding: 2em 7em 0 7em;
 }
-
+.rectangle{
+  border: 3px solid black;
+  border-radius: 20px 20px 20px 20px;
+  width: 310px;
+  margin-left:1px ;
+  height: 200px; 
+}
+.rectangle2{
+  border: 3px solid black;
+  border-radius: 20px 20px 20px 20px;
+  width: 310px;
+  margin-left:1px ;
+  height: 160px; 
+}
 .sidebar {
   height: 100%;
   width: 20em;

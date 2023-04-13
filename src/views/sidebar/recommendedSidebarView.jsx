@@ -6,28 +6,30 @@ export default function sidebarView(props) {
       {/* <div className="form-group">
                 <label htmlFor="peopleNr">Number of people</label>
             </div> */}
-      <div class="search-bar">
-        <input id="peopleNr" value="" placeholder="Number of people:" />
-      </div>
-      <div class="search-bar">
-        <input id="numOfResults" value="" placeholder="Number of results:" />
-      </div>
+      <div class="rectangle">
+        <div class="search-bar">
+          <input id="peopleNr" value="" placeholder="Number of people:" />
+        </div>
+        <div class="search-bar">
+          <input id="numOfResults" value="" placeholder="Number of results:" />
+        </div>
 
-      <div class="search-bar">
-        <label htmlFor="priceFilter">$</label>
-        <input
-          type="range"
-          id="priceFilter"
-          name="price"
-          min="0"
-          max="10000"
-          value="10000"
-        />
-        <label>$$$</label>
-      </div>
+        <div class="search-bar">
+          <label htmlFor="priceFilter">$</label>
+          <input
+            type="range"
+            id="priceFilter"
+            name="price"
+            min="0"
+            max="10000"
+            value="10000"
+          />
+          <label>$$$</label>
+        </div>
 
-      <div className="form-group">
-        <button onClick={priceFilterCB}>Filter</button>
+        <div className="form-group">
+          <button onClick={priceFilterCB}>Filter</button>
+        </div>
       </div>
     </div>
   );

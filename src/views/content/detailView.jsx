@@ -1,3 +1,4 @@
+import {router} from "../../VueRoot"
 export default function detailView(props){
     return(
     <div>
@@ -18,7 +19,7 @@ export default function detailView(props){
   
     )
     function GoBackACB() {
-        window.location.hash="#/"
+        router.go(-1);
     }
 
 }
