@@ -1,6 +1,5 @@
 import { ref, watch } from "vue";
 export default function RecommendedActivityView(props) {
-  // var isSaved = ref(false);
 
   return (
     <div>
@@ -15,6 +14,14 @@ export default function RecommendedActivityView(props) {
 
   function displayActivitiesCB(activityResult) {
     if (activityResult && activityResult.data) {
+      const addButtonRef = ref(null);
+
+      function SaveActivityACB() {
+        props.saveActivity(activityResult.data);
+        addButtonRef.value.disabled = true;
+        addButtonRef.value.innerText = "Added";
+      }
+
       return (
         <span>
           <div>
@@ -26,6 +33,7 @@ export default function RecommendedActivityView(props) {
               disabled={props.savedActivity}
               class="saveButton"
               onClick={SaveActivityACB}
+              ref = {addButtonRef}
             >
               Add
             </button>
@@ -34,12 +42,7 @@ export default function RecommendedActivityView(props) {
       );
     }
 
-    function SaveActivityACB() {
-      // const button = document.querySelector(".saveButton");
-      // button.textContent = "Saved";
-      // isSaved.value = true;
-      props.saveActivity(activityResult.data);
-    }
+    
 
   }
 }
