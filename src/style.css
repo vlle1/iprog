@@ -203,6 +203,25 @@ button {
 
 }
 
+.detailsCard{
+  background-color: var(--card);
+  margin-right: 20px;
+  margin-top: 50px;
+  border-radius: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-width: 500px;
+}
+
+.participantsPic{
+  max-width: 25px;
+  max-height: 25px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
 .activityCard:hover {
   background-color: var(--card-hover);
 }

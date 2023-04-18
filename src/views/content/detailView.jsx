@@ -1,18 +1,18 @@
 import {router} from "../../VueRoot"
 export default function detailView(props){
     return(
-    <div>
+    <div class="detailsCard">
         <h1>{props.activity.activity}</h1>
-        <div>Accessibility: {
-            props.activity.accessibility === "" ? "No info" : props.activity.accessibility
-        }</div>
-        <div>Type: {props.activity.type}</div>
-        <div>Participants: {props.activity.participants}</div>
-        <div>Price in euros: {props.activity.price}</div>
-        <div>Link: {props.activity.link ? props.activity.link : "No info"}</div>
-
         <div>
-        <button onClick={GoBackACB}>Cancel</button>
+            <h2>{props.activity.type.toUpperCase()} ACTIVITY</h2>
+            <div><h3>{props.activity.accessibility === "" ? "No info" : props.activity.accessibility <= 0.33 ? "Easy" : props.activity.accessibility <= 0.66 ? "Medium hard" : "Tricky"} to Perform</h3></div>
+            <div><h3>Participants: {renderParticipantsACB(props.activity.participants)}</h3></div>
+            <div><h3>Price: {props.activity.price == 0 ? "Free" : props.activity.price <= 0.5 ? "Cheap" : "Expensive"}</h3></div>
+            <div><h3>{props.activity.link ? "Link: " + props.activity.link : ""}</h3></div>
+
+            <div>
+                <button onClick={GoBackACB}>Cancel</button>
+            </div>
         </div>
     </div>
     
@@ -20,6 +20,16 @@ export default function detailView(props){
     )
     function GoBackACB() {
         router.go(-1);
+    }
+
+    function renderParticipantsACB(participants){
+        let participantsArr = [];
+
+        for (let i = 0; i < participants; i++) {
+                participantsArr.push(<img key={i} src="/src/views/content/user.png" class="participantsPic" />);
+        }
+        return participantsArr;
+
     }
 
 }
