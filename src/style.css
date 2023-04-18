@@ -183,7 +183,9 @@ button {
   margin-top: 40px;
   margin-bottom: 5px;
   margin-right: 20px;
+  margin-left: 10px;
   border-radius: 10px;
+  padding-right: 10px;
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -203,6 +205,11 @@ button {
 
 .activityCard:hover {
   background-color: var(--card-hover);
+}
+
+.RecommendedActivity {
+  padding-top: 5px;
+  padding-bottom: 20px;
 }
 
 

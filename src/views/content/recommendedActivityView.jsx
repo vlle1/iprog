@@ -11,23 +11,21 @@ export default function RecommendedActivityView(props) {
       </div>
     </div>
   );
-
+  
   function displayActivitiesCB(activityResult) {
     if (activityResult && activityResult.data) {
       const addButtonRef = ref(null);
 
       function SaveActivityACB() {
-        props.saveActivity(activityResult.data);
+        props.saveActivity(activityResult.data); 
         addButtonRef.value.disabled = true;
         addButtonRef.value.innerText = "Added";
       }
 
+
       return (
-        <span>
-          <div>
-            <div class="activityCard2" >
-              {activityResult.data.activity}
-            </div>
+        <div class="RecommendedActivity">
+          <div >
             <button
               id="activity"
               disabled={props.savedActivity}
@@ -37,12 +35,15 @@ export default function RecommendedActivityView(props) {
             >
               Add
             </button>
+            <span class="activityCard2" >
+              {activityResult.data.activity}
+            </span>
           </div>
-        </span>
+        </div>
       );
     }
 
-    
-
   }
+
+  
 }
