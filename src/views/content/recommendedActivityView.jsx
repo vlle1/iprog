@@ -36,7 +36,11 @@ export default function RecommendedActivityView(props) {
               Add
             </button>
             <span class="activityCard2" >
-              {activityResult.data.activity}
+              {activityResult.data.activity} ({activityResult.data.type})
+            <div>{activityResult.data.accessibility === "" ? "" : activityResult.data.accessibility <= 0.33 ? "Easy" : activityResult.data.accessibility <= 0.66 ? "Medium hard" : "Tricky"} to Perform</div>
+            <div>Participants: {activityResult.data.participants}</div>
+            <div>Price: {activityResult.data.price == 0 ? "Free" : activityResult.data.price <= 0.5 ? "Cheap" : "Expensive"}</div>
+            <div>{activityResult.data.link ? "Link: " + activityResult.data.link : ""}</div>
             </span>
           </div>
         </div>
