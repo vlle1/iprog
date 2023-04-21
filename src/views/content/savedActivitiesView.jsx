@@ -10,7 +10,7 @@ export default function savedActivitiesView(props) {
     )
     function displaySavedActivitiesCB(savedActivity) {
         return <div class = "RecommendedActivity">
-                <button class="saveButton" onClick={UnsaveActivityACB}>Unsave</button>
+                <button onClick={UnsaveActivityACB}>Unsave</button>
                 <span class="activityCard" onClick={MoreInformationACB}>{savedActivity.activity}</span>
                 
         </div>

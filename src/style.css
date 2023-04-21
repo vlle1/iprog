@@ -15,10 +15,11 @@
     
     --nav-active: darkslategrey;
     --nav: rgb(119, 197, 197);
-    --nav-hover: rgba(47,79,79,0.5);
+    --nav-hover: rgba(47,79,79);
 
     --error-text: #3a0000;
     --error-card: rgba(255,0,0,.2);
+    --addTocart: rgb(213, 249, 233);
   }
 }
 
@@ -38,10 +39,11 @@
     --sidebar-button: #1a1a1a;
 
     --nav: darkslategrey;
-    --nav-hover: rgba(119, 197, 197, 0.2);
+    --nav-hover: rgba(119, 197, 197);
 
     --error-text: #b70000;
     --error-card: rgba(255,0,0,.2);
+    --addTocart: rgb(213, 249, 233);
   }
 }
 :root {
@@ -69,7 +71,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -78,12 +80,36 @@ button {
   transition: border-color 0.25s;
 }
 
+button:hover {
+  border-color: var(--sidebar-ground);
+}
+
+.removeBtn {
+  position: absolute;
+  right: 12px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.removeBtn:hover{
+  background-color: #de9999;
+  border-color: #000000;
+}
+
 .saveButton {
-  text-align: right;
-  background-color: var(--button);
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  background-color: var(--addTocart);
+  position: right;
 }
 .saveButton:hover {
-  border-color: var(--interact);
+  border-color: var(--sidebar-ground);
 }
 
 .card {
@@ -187,19 +213,21 @@ button {
   border-radius: 10px;
   padding-right: 10px;
   padding-left: 20px;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
   min-width: 500px;
 }
 .activityCard2{
-  margin-top: 40px;
+  position: relative;
+  background-color: var(--card);
+  margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 20px;
   border-radius: 10px;
   padding-left: 20px;
+  padding-right: 50px;
   padding-top: 10px;
   padding-bottom: 10px;
-  min-width: 500px;
 
 }
 
@@ -229,11 +257,17 @@ button {
 .RecommendedActivity {
   padding-top: 5px;
   padding-bottom: 20px;
+  margin-right: 50px;
 }
 
 
 .topbar {
+  overflow: hidden;
+  position: fixed;
   display: flex;
+  width: 80%;
+  z-index: 100;
+
 }
 .nav {
   border-radius: 0;
@@ -269,4 +303,14 @@ img.loading {
   border-width: 2px;
   padding: 1em;
   width: 100%;
+}
+
+.cart {
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 0.6em 1.0em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--addTocart);
 }

@@ -34,6 +34,7 @@ export default class ActivityModel {
   }
   deleteSavedActivity(activityToDelete) {
     console.log(activityToDelete)
+  
   this.savedActivities=this.savedActivities.filter(removeActivityCB)
   function removeActivityCB(activity) {
     return activity.key !== activityToDelete.key;
@@ -41,12 +42,20 @@ export default class ActivityModel {
    
   }
 
+  RemoveActivityFromRecommended(activityToDelete) {
+    console.log(activityToDelete)
+  
+    this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB)
+    function removeRecommendedActivityCB(activity) {
+      return activity.key !== activityToDelete.key;
+    }
+    
+    }
+
   getSavedActivities() {
     return this.savedActivities;
    
   }
-
-
 
     //API call with those parameters
     //activity?participants=1&price=0.1&type=education
@@ -94,6 +103,10 @@ export default class ActivityModel {
     }
     this.notifyObservers(REC_CHANGE);
   }
+
+  
+
+    
   doSearch() {
     
     for(let i = 0;i<5;i++) {
