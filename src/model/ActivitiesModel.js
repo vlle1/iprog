@@ -22,7 +22,6 @@ export default class ActivityModel {
 
   addSavedActivity(activity) {
     this.savedActivities.push(activity);
-  
     this.notifyObservers(SAVED_CHANGED);
   }
   deleteSavedActivity(activityToDelete) {

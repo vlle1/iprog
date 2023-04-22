@@ -3,7 +3,7 @@ import { getDatabase, ref, get, set, onValue } from "firebase/database"
 const PATH ="saved";
 
 import { initializeApp, FirebaseError } from"firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -28,6 +28,7 @@ function persistenceToModel(persistedData = {}, model) {
     console.log("recommended1 " + persistedData.recommendedAct)
     model.recommendedActivities=[]
   }*/
+  console.log(persistedData)
   if (persistedData.savedAct !== undefined) {
     model.savedActivities = persistedData.savedAct
   } else {model.savedActivities=[]}
@@ -44,42 +45,50 @@ function persistenceToModel(persistedData = {}, model) {
  * SIDE EFFECT: add observer to the model taht will push changes to firebase
  */
 async function firebaseModelPromise(model) {
+  //add observer to model that will push changes to firebase
   function obsACB() {
+    
     const setValue = modelToPersistence(model);
     //push set value to firebase
-    console.log("[firebase] push data:", setValue);
-    user = getAuth().currentUser;
+    const user = getAuth().currentUser;
     if (user == null || user == undefined) {
       console.log("saving to persistance failed: user is null or undefined")
     }
     set(ref(db, PATH + "/" + user.uid), setValue);
   }
-  //get data from firebase
- 
-  const user = getAuth().currentUser;
-  if (user == null || user == undefined) {
-    console.log("pulling to persistance failed (silently): user is null or undefined")
-    return;
-  }
+  //todo maybe only keep this observer while the user is logged in?
+  model.addObserver(obsACB);
 
-  return get(ref(db, PATH+ "/" + user.uid))
-    .then(dataFromFirebase => {
+  //add observer to firebase (auth state) that will update the model (on login / logout etc.)
+  onAuthStateChanged(getAuth(), (user) => {
+    if (user) {
+      // get saved activities.
      
-      persistenceToModel(dataFromFirebase.val(), model);
-     
-    })
-    .then(() => {
-      model.addObserver(obsACB);
-    })
-    .catch(function (error) {
-        console.log("error", error);
-        if (error instanceof FirebaseError) {
-            console.log("Firebase error code:", error.code);
-            console.log("Firebase error message:", error.message);
-        }
-    });
-    //returned promise resolves when the model has been updated according to firebase.
+      return get(ref(db, PATH+ "/" + user.uid))
+      .then(dataFromFirebase => {
+       
+        persistenceToModel(dataFromFirebase.val(), model);
+        
+      })
+      .catch(function (error) {
+          console.log("error", error);
+          if (error instanceof FirebaseError) {
+              console.log("Firebase error code:", error.code);
+              console.log("Firebase error message:", error.message);
+          }
+      });
+      //returned promise resolves when the model has been updated according to firebase.
+    }
+    else {
+      //user signed out => reset model
+
+      persistenceToModel({}, model);
+      return;
+    }
+  });
+  
     
+      
 }
 
 // Remember to uncomment the following line:

@@ -1,5 +1,7 @@
 import RecommendedActivityView from "../views/content/recommendedActivityView";
 import { onMounted, onUnmounted } from "vue";
+import { getAuth } from "firebase/auth";
+
 export default {
     name: "Recommended",
     props: ["model"],
@@ -27,7 +29,6 @@ export default {
 
         // callback to save a new activity
         function saveANewActivityACB(activity) {
-   
             props.model.addSavedActivity(activity);
         }
         // callback to receive more information about an activity
@@ -51,7 +52,7 @@ export default {
                     removeActivity={RemoveActivityFromRecommendedACB}
                     getActivity={receiveMoreInformationACB}
                     activityResults={props.model.recommendedActivities}
-
+                    loggedIn={getAuth().currentUser !== null}
 
                 />
             )

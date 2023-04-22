@@ -17,6 +17,7 @@ export default function RecommendedActivityView(props) {
       const addButtonRef = ref(null);
 
     function SaveActivityACB() {
+      
       props.saveActivity(activityResult.data); 
       addButtonRef.value.disabled = true;
       addButtonRef.value.innerText = "Added";
@@ -33,15 +34,14 @@ export default function RecommendedActivityView(props) {
               <h3>{activityResult.data.activity} ({activityResult.data.type})</h3>
               <div>Participants: {activityResult.data.participants}</div>
               <div> {activityResult.data.price == 0 ? "Free" : activityResult.data.price <= 0.5 ? "Cheap" : "Expensive"}</div>
-              <div>{activityResult.data.accessibility === "" ? "" : activityResult.data.accessibility <= 0.33 ? "Easy" : activityResult.data.accessibility <= 0.66 ? "Medium hard" : "Tricky"} to Perform</div>
               <button
                 id="activity"
-                disabled={props.savedActivity}
+                disabled={(!props.loggedIn) || props.savedActivity }
                 class="saveButton"
                 onClick={SaveActivityACB}
                 ref = {addButtonRef}
               >
-                Add
+                {props.loggedIn ? "Add" : "Log In to Add" }
               </button>
               <div></div>
             </div>
