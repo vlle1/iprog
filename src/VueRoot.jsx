@@ -26,7 +26,10 @@ const routes = [
   {
     path: "/saved",
     component: <SavedActivities model={myModel} />,
-    showInTopBar: () => true,
+    showInTopBar: () => {
+      //hide if logged out:
+      return getAuth().currentUser != null;
+    },
     displayName: "Saved Activities",
   },
   {

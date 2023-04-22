@@ -1,4 +1,5 @@
-import savedActivitiesView from "../views/content/savedActivitiesView";
+import { getAuth } from "firebase/auth";
+
 export default {
     name: "SavedActivities",
     props: ["model"],
@@ -12,6 +13,9 @@ export default {
            
         }
         return function renderACB(props) {
+            if (getAuth().currentUser == null) {
+                return <div><br></br><h1>Error: You must be logged in to view this page. <br></br>In case you are a TA, have a nice day and have fun testing our site :D</h1></div>
+            }
             return(
                 <savedActivitiesView
                 savedActivities={props.model.getSavedActivities()}
