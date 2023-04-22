@@ -1,25 +1,36 @@
 import firebaseConfig from "../lib/firebaseConfig";
 import { getDatabase, ref, get, set, onValue } from "firebase/database"
-const PATH = "TEMP/TEST";
+const PATH ="saved";
 
 import { initializeApp, FirebaseError } from"firebase/app";
+import { getAuth } from "firebase/auth";
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 
+//store: {savedAct: []}
 function modelToPersistence(mymodel) {
-
-  return { test: "this is a test" };
-}
+    //var recommendedAct= mymodel.recommendedActivities;
+    var savedAct=mymodel.savedActivities;
+    return {savedAct}
+  }
 
 function persistenceToModel(persistedData = {}, model) {
   if (persistedData == null) {
     persistedData = {};
   }
-  if (persistedData.test === undefined) {
-    persistedData.test = "defined"
-  }
+ 
+  /*if (persistedData.recommendedAct !== undefined) {
+    console.log("recommended2 " + persistedData.recommendedAct)
+    model.recommendedActivities = persistedData.recommendedAct
+  } else {
+    console.log("recommended1 " + persistedData.recommendedAct)
+    model.recommendedActivities=[]
+  }*/
+  if (persistedData.savedAct !== undefined) {
+    model.savedActivities = persistedData.savedAct
+  } else {model.savedActivities=[]}
   model.test = persistedData.test;
   //TODO: initialize values if undefined!!!
   //TODO: set values in model!
@@ -37,13 +48,25 @@ async function firebaseModelPromise(model) {
     const setValue = modelToPersistence(model);
     //push set value to firebase
     console.log("[firebase] push data:", setValue);
-    set(ref(db, PATH), setValue);
+    user = getAuth().currentUser;
+    if (user == null || user == undefined) {
+      console.log("saving to persistance failed: user is null or undefined")
+    }
+    set(ref(db, PATH + "/" + user.uid), setValue);
   }
-  return get(ref(db, PATH))
+  //get data from firebase
+ 
+  const user = getAuth().currentUser;
+  if (user == null || user == undefined) {
+    console.log("pulling to persistance failed (silently): user is null or undefined")
+    return;
+  }
+
+  return get(ref(db, PATH+ "/" + user.uid))
     .then(dataFromFirebase => {
-      console.log("[firebase] get:", dataFromFirebase.val());
+     
       persistenceToModel(dataFromFirebase.val(), model);
-      console.log("[model] updated:", model);
+     
     })
     .then(() => {
       model.addObserver(obsACB);

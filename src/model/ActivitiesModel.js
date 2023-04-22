@@ -13,17 +13,10 @@ const DEFAULT_RECOMMENDED_ACTIVITIES = 5;
 export default class ActivityModel {
   constructor() {
     this.observers = []; //as in the lab.
-    this.recommendedActivities = []; //array of activity objects
-    this.currentActivity= null; //to view details of an activity.
+    this.recommendedActivities = []; //array of activity objects   
     this.savedActivities = []; //array of activity objects
     this.promiseState=[];
-    this.filterText = "";
-    this.filterPriceLower = null; //could be number
-    this.filterPriceUpper = null; //could be number
-    this.filterPeople = null; //could be number (1, 2 or 3 etc.)
-    this.filteredActivites = []; 
-    this.savedfilteredActivites = [];
-    this.test = "";
+
     //we don't save the form entries for adding an activity
   }
 
@@ -121,7 +114,7 @@ export default class ActivityModel {
       try {
         obs(message);
       } catch (e) {
-        console.log("failed calling observer: " + e);
+        console.log(e);
       }
     }
     this.observers.forEach(invokeObserverCB);
