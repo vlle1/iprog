@@ -19,6 +19,7 @@ export default {
             <button disabled={path === page.path} class="nav" onClick={() => (window.location.hash = page.path)}>
               {page.displayName}
             </button>
+          
           ))}
         </div>
       );

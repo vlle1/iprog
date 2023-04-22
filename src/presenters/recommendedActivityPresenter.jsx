@@ -34,8 +34,13 @@ export default {
         function receiveMoreInformationACB(activity) {
            
             props.model.currentActivity = activity;
-           
         }
+
+        function RemoveActivityFromRecommendedACB(activity){
+            props.model.RemoveActivityFromRecommended(activity)
+        }
+
+
         return function renderACB(props) {
             return (
 
@@ -43,6 +48,7 @@ export default {
 
                 <RecommendedActivityView
                     saveActivity={saveANewActivityACB}
+                    removeActivity={RemoveActivityFromRecommendedACB}
                     getActivity={receiveMoreInformationACB}
                     activityResults={props.model.recommendedActivities}
 
