@@ -1,8 +1,12 @@
 import { ref, watch } from "vue";
 export default function RecommendedActivityView(props) {
 
+  const count = ref(0);
+
   return (
     <div>
+      <div class="cart" id="cart"></div>
+
       <div>
         <h1>Welcome!</h1>
         <h2> Here are some Recommended Activities</h2>
@@ -17,10 +21,12 @@ export default function RecommendedActivityView(props) {
       const addButtonRef = ref(null);
 
     function SaveActivityACB() {
-      
       props.saveActivity(activityResult.data); 
       addButtonRef.value.disabled = true;
       addButtonRef.value.innerText = "Added";
+      count.value++;
+      const cartButton = document.getElementById("cart");
+      cartButton.innerText = count.value.toString() + " new";
     }
 
     function RemoveActivityACB() {
