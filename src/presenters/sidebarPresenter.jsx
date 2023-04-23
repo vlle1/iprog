@@ -3,6 +3,7 @@ import sidebarView from "../views/sidebar/recommendedSidebarView";
 import savedSidebarView from "../views/sidebar/savedSidebarView";
 import emptySidebarView from "../views/sidebar/emptySidebarView.jsx";
 import { reactive } from "vue";
+import { onMounted} from "vue";
 
 
 export default {
@@ -13,9 +14,10 @@ export default {
         this.$forceUpdate();
     }
   },
+  
   setup(props) {
-    function handleActivitesACB(people, price, numOfResults) {
-      props.model.filterApi(people, price, numOfResults);
+    function handleActivitesACB(people, price, numOfResults,type) {
+      props.model.filterApi(people, price, numOfResults,type);
     }
 
     function handleSavedActivitesACB(people, price) {
@@ -25,6 +27,13 @@ export default {
       props.model.addSavedActivity(activity)
 
     }
+
+
+    
+
+
+    
+    
     
     return function renderACB(props) {
       const path = this.$router.currentRoute._value.path;
@@ -33,7 +42,8 @@ export default {
           <sidebarView
             recommendedActivities={props.model.recommendedActivities}
             filteredActivitesFunc={handleActivitesACB}
-            filteredActivitesList={props.model.filteredActivites}
+            filteredActivitesList={props.model.savedfilteredActivites}
+            activitesTypes={props.model.activitesTypes}
           />
         );
       }

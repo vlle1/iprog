@@ -17,21 +17,51 @@ export async function recomendedActivities() {
   return generatorActivity().then(getActvityACB);
 }
 //for filter
-export async function generatorActivityFilter(people, price) {
-  if ((people != null) & (price != null)) {
-    let query = "participants=1&price<=price";
+export async function generatorActivityFilter(people, price,type) {
+
+
+  console.log("pris: " + price)
+  console.log("people: " + people)
+  console.log(typeof(people))
+  console.log("type: " + type)
+  let toggle= 0;
+  let query= ""
+
+  if ((people != "") & (type == "All")) {
+    toggle = 1;
+    query = "?participants="+people+"&maxprice="+price;
+  }
+  if ((people == "") & (type == "All")) {
+    toggle = 1;
+    query = "?maxprice="+price;
   }
 
-  const url_string = BASE_URL;
+  if ((people != "") & (type != "All")) {
+    toggle = 1;
+    query = "?type="+type+"&participants="+people+"&maxprice="+price
+  }
+
+  let url_string = BASE_URL + query;
   const options = {
     method: "GET",
     headers: {},
   };
+
+  if (toggle ==1) {
+    url_string="https://www.boredapi.com/api/activity" + query
+    
+  }
+
+
+
+  console.log("jodå")
+  console.log(url_string)
+
   return fetch(url_string, options).then(processResponseToJsonACB);
 }
 
-export async function recomendedActivitiesFilter() {
-  return generatorActivityFilter().then(getActvityACB);
+export async function recomendedActivitiesFilter(people, price,type) {
+  return generatorActivityFilter(people, price,type).then(getActvityACB);
 }
 
 function getActvityACB(activity) {

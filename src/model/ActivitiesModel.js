@@ -16,6 +16,8 @@ export default class ActivityModel {
     this.recommendedActivities = []; //array of activity objects   
     this.savedActivities = []; //array of activity objects
     this.promiseState=[];
+    this.savedfilteredActivites=[];
+    this.activitesTypes=["All","recreational","education","social", "relaxation", "cooking"];
 
     //we don't save the form entries for adding an activity
   }
@@ -51,10 +53,10 @@ export default class ActivityModel {
 
     //API call with those parameters
     //activity?participants=1&price=0.1&type=education
-  filterApi(people, price, numerOfResults){
+  filterApi(people, price, numerOfResults,type){
     this.recommendedActivities = [];
     for(let i = 0;i<numerOfResults;i++) {
-      resolvePromise(recomendedActivitiesFilter(people,price),this.promiseState);
+      resolvePromise(recomendedActivitiesFilter(people,price,type),this.promiseState);
       this.recommendedActivities.push(this.promiseState)
       this.promiseState = [];    
    }
@@ -76,6 +78,8 @@ export default class ActivityModel {
          
    }
   }
+
+
 
 
   
@@ -106,6 +110,9 @@ export default class ActivityModel {
       this.recommendedActivities.push(this.promiseState)
       this.promiseState = [];
     }
+    
+ 
+
     
      
   }

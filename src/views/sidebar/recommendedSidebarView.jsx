@@ -18,6 +18,14 @@ export default function sidebarView(props) {
         </div>
 
         <div class="search-bar">
+        <label for="typeOf">Choose type of activity</label>
+            <select name="type" id="types">
+              {props.activitesTypes.map(optionsTypesCB)}
+            </select>
+        </div>
+        
+
+        <div class="search-bar">
           <label htmlFor="priceFilter">$</label>
           <input
             type="range"
@@ -29,6 +37,7 @@ export default function sidebarView(props) {
           />
           <label>$$$</label>
         </div>
+        
 
         <div className="form-group">
           <button onClick={priceFilterCB}>Filter</button>
@@ -41,10 +50,39 @@ export default function sidebarView(props) {
     var people = document.getElementById("peopleNr").value;
     var price = document.getElementById("priceFilter").value;
     var numOfResults = document.getElementById("numOfResults").value;
+    var type = document.getElementById("types").value;
 
-    newSeachACB(people, price, numOfResults);
+    newSeachACB(people, price, numOfResults,type);
   }
-  function newSeachACB(people, price, numOfResults) {
-    props.filteredActivitesFunc(people, price, numOfResults);
+  function newSeachACB(people, price, numOfResults,type) {
+    props.filteredActivitesFunc(people, price, numOfResults,type);
+  }
+
+  function optionsTypesCB(type) {
+    /*
+    let types = [];
+    //for saved activites
+    
+    for (let index = 0; index < props.recommendedActivities.length; index++) {
+      try {
+        let type = props.recommendedActivities[index].data.type
+        if (!types.includes(type)) {
+          types.push(type)
+          
+        }
+      }catch (error) {
+        //pass
+      }
+
+    }
+    */
+    return <option value= {type} >{type}</option>
+    
+
+    
+  }
+  function optionElementCB(type) {
+    return <option value= {type} >{type}</option>
+    
   }
 }
