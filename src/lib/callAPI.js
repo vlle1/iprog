@@ -20,10 +20,6 @@ export async function recomendedActivities() {
 export async function generatorActivityFilter(people, price,type) {
 
 
-  console.log("pris: " + price)
-  console.log("people: " + people)
-  console.log(typeof(people))
-  console.log("type: " + type)
   let toggle= 0;
   let query= ""
 
@@ -54,9 +50,7 @@ export async function generatorActivityFilter(people, price,type) {
 
 
 
-  console.log("jodå")
-  console.log(url_string)
-
+ 
   return fetch(url_string, options).then(processResponseToJsonACB);
 }
 

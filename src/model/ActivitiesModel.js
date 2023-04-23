@@ -57,8 +57,14 @@ export default class ActivityModel {
     this.recommendedActivities = [];
     for(let i = 0;i<numerOfResults;i++) {
       resolvePromise(recomendedActivitiesFilter(people,price,type),this.promiseState);
-      this.recommendedActivities.push(this.promiseState)
-      this.promiseState = [];    
+      console.log("check item in list")
+      console.log(this.recommendedActivities[0])
+      console.log(this.promiseState)
+      
+      if (!this.recommendedActivities.includes(this.promiseState)) {
+        this.recommendedActivities.push(this.promiseState)
+      }    
+      this.promiseState = [];
    }
   }
 
