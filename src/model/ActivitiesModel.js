@@ -18,7 +18,16 @@ export default class ActivityModel {
     this.promiseState=[];
     this.savedfilteredActivites=[];
     this.activitesTypes=["All","recreational","education","social", "relaxation", "cooking"];
-
+    this.filterPeople = ""
+    this.filterPeopleSaved = ""
+    this.filterType = ""
+    this.filterTypeSaved = ""
+    this.prices=["All","Free","Cheap","Expensive"];
+    this.priceMax = 1
+    this.priceMin = 0
+    this.priceMaxSaved = 1
+    this.priceMinSaved = 0
+    this.numerOfResults = 10;
     //we don't save the form entries for adding an activity
   }
 
@@ -36,17 +45,101 @@ export default class ActivityModel {
    
   }
 
-  getFilteredSavedActivities() {
-    //TODO FILTER
-    return this.savedActivities;
-   
+  setFilterPeople(people) {
+
+    this.filterPeople = people
+    this.notifyObservers("filterPeopleChanged")
+
+    this.filterApi()
   }
+
+  setFilterPeopleFilter(people) {
+
+    this.filterPeopleSaved = people
+    this.notifyObservers("filterPeopleChanged")
+
+    this.filterSavedActivites()
+  }
+
+  setfilterType(type) {
+    this.filterType = type
+    
+    this.notifyObservers("filterTypeChanged")
+    this.filterApi()
+
+  }
+
+  setfilterTypeSaved(type) {
+    this.filterTypeSaved = type
+    
+    this.notifyObservers("filterTypeChanged")
+    this.filterSavedActivites()
+
+  }
+
+  reset() {
+    console.log("reset")
+    this.savedfilteredActivites=[];
+    this.filterPeopleSaved = ""
+    this.filterTypeSaved = ""
+    this.priceMaxSaved = 1
+    this.priceMinSaved = 0
+  }
+
+  setfilterPrice(price) {
+    
+    if (price == "All") {
+      this.priceMax = 1 
+      this.priceMin = 0
+    }
+    if (price == "Free") {
+      this.priceMax = 0 
+      this.priceMin = 0
+    }
+    if (price == "Cheap") {
+      this.priceMax = 0.4 
+      this.priceMin = 0.1
+    }
+    if (price == "Expensive") {
+      this.priceMax = 1 
+      this.priceMin = 0.6
+    }
+    
+    this.notifyObservers("filterPriceChanged")
+    this.filterApi()
+
+  }
+
+  setfilterPriceSaved(price) {
+    
+    if (price == "All") {
+      this.priceMaxSaved = 1 
+      this.priceMinSaved = 0
+    }
+    if (price == "Free") {
+      this.priceMaxSaved = 0 
+      this.priceMinSaved = 0
+    }
+    if (price == "Cheap") {
+      this.priceMaxSaved = 0.4 
+      this.priceMinSaved = 0.1
+    }
+    if (price == "Expensive") {
+      this.priceMaxSaved = 1 
+      this.priceMinSaved = 0.6
+    }
+    
+    this.notifyObservers("filterPriceChanged")
+    this.filterSavedActivites()
+
+  }
+
+
 
   RemoveActivityFromRecommended(activityToDelete) {
     console.log(activityToDelete.key);
   
   this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB);
-  console.log(this.recommendedActivities);
   return this.recommendedActivities;
   function removeRecommendedActivityCB(activity) {
     return activity.data.key !== activityToDelete.key;
@@ -57,40 +150,65 @@ export default class ActivityModel {
     return this.recommendedActivities;
   }
 
+  getFilteredSavedActivities() {
+    if ( (this.savedfilteredActivites.length ==0) & (this.filterPeopleSaved == "") &(this.filterTypeSaved == "")) {
+      return this.savedActivities;
+    }
+    return this.savedfilteredActivites;
+    
+  }
+
  
 
     //API call with those parameters
     //activity?participants=1&price=0.1&type=education
-  filterApi(people, price, numerOfResults,type){
+  filterApi(){
     this.recommendedActivities = [];
-    for(let i = 0;i<numerOfResults;i++) {
-      resolvePromise(recomendedActivitiesFilter(people,price,type),this.promiseState);
-      console.log("check item in list")
-      console.log(this.recommendedActivities[0])
-      console.log(this.promiseState)
-      
+    for(let i = 0;i<this.numerOfResults;i++) {
+      resolvePromise(recomendedActivitiesFilter(this.filterPeople,this.priceMin,this.priceMax,this.filterType),this.promiseState);
+ 
+      //Not working TODO - needs to be fixed
       if (!this.recommendedActivities.includes(this.promiseState)) {
         this.recommendedActivities.push(this.promiseState)
-      }    
+      }
+       
       this.promiseState = [];
    }
   }
 
 
-   filterSavedActivites(people, price){
+   filterSavedActivites(){
     this.savedfilteredActivites = [];
-    console.log("jag ") 
+    
     for(let i = 0;i<this.savedActivities.length;i++) {
       let object = this.savedActivities[i]
-      let objectPeopel = this.savedActivities[i].participants
-      let objectPrice = this.savedActivities[i].price
-      if ((objectPeopel == people) & (objectPrice<= price)) {
-        this.savedfilteredActivites.push(object)
-           console.log("jag ") 
-           console.log(object) 
-      } 
+      let objectPeopel = object.participants
+      let objectPrice = object.price
+      let objectType = object.type
+      if (this.filterPeopleSaved == "") {
+        console.log("alternativ 1")
+        if ((this.filterTypeSaved != "") & (objectType == this.filterTypeSaved) & (objectPrice<= this.priceMaxSaved) & (objectPrice>= this.priceMinSaved)) {
+          this.savedfilteredActivites.push(object)
+        } 
+        
+      }
+      if (this.filterTypeSaved == "") {
+        console.log("alternativ 2")
+        if ((this.filterPeopleSaved != "") & (objectPeopel == this.filterPeopleSaved) & (objectPrice<= this.priceMaxSaved) & (objectPrice>= this.priceMinSaved)) {
+          console.log("alternativ 22")
+          this.savedfilteredActivites.push(object)
+        } 
+      }
+      if ((this.filterTypeSaved != "") & (this.filterPeopleSaved != "" )) {
+        console.log("alternativ 3")
+        if ((objectType == this.filterTypeSaved) & (objectPeopel == this.filterPeopleSaved) & (objectPrice<= this.priceMaxSaved) & (objectPrice>= this.priceMinSaved)) {
+          this.savedfilteredActivites.push(object)
+        } 
+      }
          
    }
+   console.log(this.savedfilteredActivites)
+   
   }
 
   regenerateRecommendedActivities() {

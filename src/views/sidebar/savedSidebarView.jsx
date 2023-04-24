@@ -9,18 +9,24 @@ export default function sidebarView(props) {
                 Find a saved activity
             </div>
                 <div class="search-bar">
-                    <input id="peopleNr" value="" placeholder="Number of people:" />
-                </div>
+                <input id="peopleNr" onChange={onPeopleChangePlusACB} value={props.filterPeople} placeholder="Number of people:" />
+            </div>
 
-                <div class="search-bar">
-                    <label htmlFor="priceFilter">$</label>
-                    <input type="range" id="priceFilter" name="price" min="0" max="10000" value="10000" />
-                    <label>$$$</label>
-                </div>
+            <div>
+                <select class="search-bar"  onChange={onTypeChangePlusACB}  name="type" id="types">
+                {props.activitesTypes.map(optionsTypesCB)}
+                </select>
+            </div>
+            
+            <div>
+                <select class="search-bar" onChange={onPriceChangePlusACB} name="price" id="prices">
+                {props.priceInterval.map(optionsTypesCB)}
+                </select>
+                <button onClick={resetACB} >Reset</button>
+            </div>
+               
 
-                <div className="form-group">
-                    <button onClick={priceFilterCB} >Filter</button>
-                </div>
+          
             </div>
             <div class="rectangle3">
             <div style="font-size: 16px; font-weight: bold; color: black; text-align: center;">
@@ -49,6 +55,28 @@ export default function sidebarView(props) {
             </div>
         </div>
     )
+    function onPeopleChangePlusACB() {
+        var people = document.getElementById("peopleNr").value;
+        props.onPeopleChange(people)
+    }
+    function optionsTypesCB(type) {
+        return <option value= {type} >{type}</option>
+        
+      }
+      function onPriceChangePlusACB() {
+        var price = document.getElementById("prices").value;
+        props.onPriceChange(price)
+        
+    }
+
+    function onTypeChangePlusACB() {
+        var type = document.getElementById("types").value;
+        props.onTypeChange(type)
+      }
+
+      function resetACB() {
+        props.onReset()
+      }
 
 
     function AddActivityCB(){

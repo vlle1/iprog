@@ -27,6 +27,43 @@ export default {
       props.model.addSavedActivity(activity)
 
     }
+    function handleonPeopleChangeACB(people) {
+      props.model.setFilterPeople(people)
+
+    }
+
+    function handleonTypeChangeACB(type) {
+      props.model.setfilterType(type)
+
+    }
+    function handleGenerateACB() {
+      props.model.filterApi()
+
+    }
+
+    function handleonPriceChangeACB(price) {
+      props.model.setfilterPrice(price)
+
+    }
+
+    function handleonPeopleChangeFilterACB(people) {
+      props.model.setFilterPeopleFilter(people)
+
+    }
+    function handleonPriceChangeFilterACB(price) {
+      props.model.setfilterPriceSaved(price)
+
+    }
+
+    function handleonTypeChangeFilterACB(type) {
+      props.model.setfilterTypeSaved(type)
+
+    }
+    function handleResetACB() {
+      props.model.reset()
+
+    }
+    
 
 
     
@@ -44,6 +81,12 @@ export default {
             filteredActivitesFunc={handleActivitesACB}
             filteredActivitesList={props.model.savedfilteredActivites}
             activitesTypes={props.model.activitesTypes}
+            priceInterval={props.model.prices}
+            onPeopleChange={handleonPeopleChangeACB}
+            onTypeChange={handleonTypeChangeACB}
+            filterPeople={props.model.filterPeople}
+            generate={handleGenerateACB}
+            onPriceChange={handleonPriceChangeACB}
           />
         );
       }
@@ -53,6 +96,12 @@ export default {
               savedActivites={props.model.savedActivities}
               filteredSavedActivitesFunc={handleSavedActivitesACB}
               saveNewActivity={createANewActivityACB}
+              onPeopleChange={handleonPeopleChangeFilterACB}
+              activitesTypes={props.model.activitesTypes}
+              priceInterval={props.model.prices}
+              onPriceChange={handleonPriceChangeFilterACB}
+              onTypeChange={handleonTypeChangeFilterACB}
+              onReset={handleResetACB}
             />
         );
       }

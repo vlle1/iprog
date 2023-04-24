@@ -17,24 +17,33 @@ export async function recomendedActivities() {
   return generatorActivity().then(getActvityACB);
 }
 //for filter
-export async function generatorActivityFilter(people, price,type) {
+export async function generatorActivityFilter(people,priceMinx, priceMax,type) {
 
 
   let toggle= 0;
   let query= ""
 
   if ((people != "") & (type == "All")) {
+  
     toggle = 1;
-    query = "?participants="+people+"&maxprice="+price;
+    query = "?participants="+people+ "&minprice="+priceMinx+ "&maxprice="+priceMax;
   }
   if ((people == "") & (type == "All")) {
+   
     toggle = 1;
-    query = "?maxprice="+price;
+    query = "?minprice="+priceMinx+ "&maxprice="+priceMax;
+  }
+
+  if ((people == "") & (type != "All")) {
+   
+    toggle = 1;
+    query = "?type="+type+"&minprice="+priceMinx+ "&maxprice="+priceMax;
   }
 
   if ((people != "") & (type != "All")) {
+
     toggle = 1;
-    query = "?type="+type+"&participants="+people+"&maxprice="+price
+    query = "?type="+type+"&participants="+people+"&minprice="+priceMinx+ "&maxprice="+priceMax;
   }
 
   let url_string = BASE_URL + query;
@@ -54,8 +63,8 @@ export async function generatorActivityFilter(people, price,type) {
   return fetch(url_string, options).then(processResponseToJsonACB);
 }
 
-export async function recomendedActivitiesFilter(people, price,type) {
-  return generatorActivityFilter(people, price,type).then(getActvityACB);
+export async function recomendedActivitiesFilter(people,priceMin, priceMax,type) {
+  return generatorActivityFilter(people, priceMin,priceMax ,type).then(getActvityACB);
 }
 
 function getActvityACB(activity) {
