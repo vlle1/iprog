@@ -36,7 +36,8 @@ export default class ActivityModel {
    
   }
 
-  getSavedActivities() {
+  getFilteredSavedActivities() {
+    //TODO FILTER
     return this.savedActivities;
    
   }

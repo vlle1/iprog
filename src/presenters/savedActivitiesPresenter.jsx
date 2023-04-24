@@ -1,4 +1,5 @@
 import { getAuth } from "firebase/auth";
+import savedActivitiesView from "../views/content/savedActivitiesView";
 
 export default {
     name: "SavedActivities",
@@ -18,7 +19,7 @@ export default {
             }
             return(
                 <savedActivitiesView
-                savedActivities={props.model.getSavedActivities()}
+                filteredSavedActivities={props.model.getFilteredSavedActivities()}
                 unsaveActivity={deleteActivitySavedACB}
                 getInformation={receiveMoreInformationACB}
                 />

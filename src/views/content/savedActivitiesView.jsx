@@ -4,7 +4,7 @@ export default function savedActivitiesView(props) {
         <div>
             <h1>Saved Activities</h1>
             <div>
-                {props.savedActivities.map(displaySavedActivitiesCB)}
+                {props.filteredSavedActivities.map(displaySavedActivitiesCB)}
             </div>
         </div>
     )
