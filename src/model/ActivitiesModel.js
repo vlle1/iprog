@@ -36,20 +36,27 @@ export default class ActivityModel {
    
   }
 
-  RemoveActivityFromRecommended(activityToDelete) {
-    console.log(activityToDelete)
-  
-    this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB)
-    function removeRecommendedActivityCB(activity) {
-      return activity.key !== activityToDelete.key;
-    }
-    
-    }
-
   getSavedActivities() {
     return this.savedActivities;
    
   }
+
+  RemoveActivityFromRecommended(activityToDelete) {
+    console.log(activityToDelete.key);
+  
+  this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB);
+  console.log(this.recommendedActivities);
+  return this.recommendedActivities;
+  function removeRecommendedActivityCB(activity) {
+    return activity.data.key !== activityToDelete.key;
+  }
+  }
+
+  getRecommendedActivities() {
+    return this.recommendedActivities;
+  }
+
+ 
 
     //API call with those parameters
     //activity?participants=1&price=0.1&type=education
@@ -85,14 +92,6 @@ export default class ActivityModel {
    }
   }
 
-
-
-
-  
-
-  getRecommendedActivities() {
-    return this.recommendedActivities;
-  }
   regenerateRecommendedActivities() {
     this.recommendedActivities = [];
     this.fillUpRecommendedActivities(DEFAULT_RECOMMENDED_ACTIVITIES);
@@ -116,10 +115,6 @@ export default class ActivityModel {
       this.recommendedActivities.push(this.promiseState)
       this.promiseState = [];
     }
-    
- 
-
-    
      
   }
 

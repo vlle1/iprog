@@ -6,9 +6,9 @@ export default function sidebarView(props) {
       {/* <div className="form-group">
                 <label htmlFor="peopleNr">Number of people</label>
             </div> */}
-      <div class="rectangle">
-      <div style="font-size: 16px; font-weight: bold; color: black; text-align: center;">
-                Find a saved activity
+      <div>
+      <div style="font-size: 16px; font-weight: bold; color: white; text-align: center;">
+                Filter activities
             </div>
         <div class="search-bar">
           <input id="peopleNr" value="" placeholder="Number of people:" />
@@ -17,16 +17,15 @@ export default function sidebarView(props) {
           <input id="numOfResults" value="" placeholder="Number of results:" />
         </div>
 
-        <div class="search-bar">
-        <label for="typeOf">Choose type of activity</label>
-            <select name="type" id="types">
+        <div>
+            <select class="search-bar" name="type" id="types">
               {props.activitesTypes.map(optionsTypesCB)}
             </select>
         </div>
         
 
         <div class="search-bar">
-          <label htmlFor="priceFilter">$</label>
+          <label htmlFor="priceFilter">Free</label>
           <input
             type="range"
             id="priceFilter"

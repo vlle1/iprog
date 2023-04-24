@@ -6,6 +6,8 @@ export default {
     name: "Recommended",
     props: ["model"],
     setup(props) {
+
+        
         // callback that happens once the component comes to life
         function lifeACB() {
             if(props.model.recommendedActivities.length===0) {
@@ -37,8 +39,8 @@ export default {
             props.model.currentActivity = activity;
         }
 
-        function RemoveActivityFromRecommendedACB(activity){
-            props.model.RemoveActivityFromRecommended(activity)
+        function RemoveActivityFromRecommendedACB(activityToDelete){
+            props.model.RemoveActivityFromRecommended(activityToDelete)
         }
 
 

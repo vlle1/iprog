@@ -26,7 +26,7 @@ export default function detailView(props){
         let participantsArr = [];
 
         for (let i = 0; i < participants; i++) {
-                participantsArr.push(<img key={i} src="/src/views/content/user.png" class="participantsPic" />);
+                participantsArr.push(<img key={i} src="/static/user.png" class="participantsPic" />);
         }
         return participantsArr;
 

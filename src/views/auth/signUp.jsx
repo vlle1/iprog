@@ -21,13 +21,14 @@ export default {
           <form onSubmit={onRegister}>
             {" "}
             <p>
-              <input type="text" placeholder="Email" v-model={email.value} />
+              <input type="text" placeholder="Email" v-model={email.value} class="login-bar"/>
             </p>
             <p>
               <input
                 type="password"
                 placeholder="Password"
                 v-model={password.value}
+                class="login-bar"
               />
             </p>
             <p>

@@ -16,13 +16,14 @@ export default {
           {props.errorMessage.value === undefined ? "" : <p class="error">{props.errorMessage.value}</p>}
           <form onSubmit={onLogin}>
           <p>
-            <input type="text" placeholder="Email" v-model={email.value} />
+            <input type="text" placeholder="Email" v-model={email.value} class="login-bar"/>
           </p>
           <p>
             <input
               type="password"
               placeholder="Password"
               v-model={password.value}
+              class="login-bar"
             />
           </p>
           <p>

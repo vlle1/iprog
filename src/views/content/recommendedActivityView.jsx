@@ -1,7 +1,7 @@
 import { ref, watch } from "vue";
-export default function RecommendedActivityView(props) {
+const count = ref(0);
 
-  const count = ref(0);
+export default function RecommendedActivityView(props) {
 
   return (
     <div>
@@ -21,9 +21,14 @@ export default function RecommendedActivityView(props) {
       const addButtonRef = ref(null);
 
     function SaveActivityACB() {
-      props.saveActivity(activityResult.data); 
-      addButtonRef.value.disabled = true;
-      addButtonRef.value.innerText = "Added";
+      props.saveActivity(activityResult.data);
+      addToSavedCB();
+    }
+
+    function addToSavedCB(){
+
+      // addButtonRef.value.disabled = true;
+      // addButtonRef.value.innerText = "Added";
       count.value++;
       const cartButton = document.getElementById("cart");
       cartButton.innerText = count.value.toString() + " new";
@@ -36,18 +41,19 @@ export default function RecommendedActivityView(props) {
         <div class="RecommendedActivity">
           <div >
             <div class="activityCard2" >
-              <button class="removeBtn" onClick={RemoveActivityACB} >x</button>
+              <button class="removeBtn" disabled={!props.loggedIn} onClick={RemoveActivityACB} >x</button>
               <h3>{activityResult.data.activity} ({activityResult.data.type})</h3>
-              <div>Participants: {activityResult.data.participants}</div>
+              <div>Participants: {renderParticipantsACB(activityResult.data.participants)}</div>
               <div> {activityResult.data.price == 0 ? "Free" : activityResult.data.price <= 0.5 ? "Cheap" : "Expensive"}</div>
               <button
                 id="activity"
-                disabled={(!props.loggedIn) || props.savedActivity }
+                disabled={(!props.loggedIn) || !props.saveActivity }
                 class="saveButton"
                 onClick={SaveActivityACB}
                 ref = {addButtonRef}
               >
-                {props.loggedIn ? "Add" : "Log In to Add" }
+                {(props.loggedIn ? "Add" : "Log In to Add" ) || (props.saveActivity ? "Add" : "Added")}
+                
               </button>
               <div></div>
             </div>
@@ -58,6 +64,16 @@ export default function RecommendedActivityView(props) {
     }
 
   }
+
+  function renderParticipantsACB(participants){
+    let participantsArr = [];
+
+    for (let i = 0; i < participants; i++) {
+            participantsArr.push(<img key={i} src="/static/user.png" class="participantsPic" />);
+    }
+    return participantsArr;
+
+}
 
   
 }
