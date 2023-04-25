@@ -165,12 +165,20 @@ export default class ActivityModel {
   filterApi(){
     this.recommendedActivities = [];
     for(let i = 0;i<this.numerOfResults;i++) {
-      resolvePromise(recomendedActivitiesFilter(this.filterPeople,this.priceMin,this.priceMax,this.filterType),this.promiseState);
- 
-      //Not working TODO - needs to be fixed
-      if (!this.recommendedActivities.includes(this.promiseState)) {
-        this.recommendedActivities.push(this.promiseState)
-      }
+      recomendedActivitiesFilter(this.filterPeople,this.priceMin,this.priceMax,this.filterType).then((data) => {
+        if (data == null || data == undefined) {
+          return ""//console.log("api result is null or undefined")
+        } 
+        if (this.recommendedActivities.filter(activity => activity.key == data.key).length > 0) {
+          return ""//console.log("not adding duplicate activity", data, "to recommendedActivities", this.recommendedActivities)
+        }
+        this.recommendedActivities.push(data)
+        this.notifyObservers("recommendedActivitiesChanged")
+      }).catch((error) => {
+        console.log(error)
+      });
+
+      console.log("recommended: ", this.recommendedActivities)
        
       this.promiseState = [];
    }
