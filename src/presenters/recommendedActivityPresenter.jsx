@@ -8,7 +8,6 @@ export default {
   setup(props) {
     const state = reactive({
       recommendedActivities: props.model.recommendedActivities,
-      forceReRender: 0,
     });
 
     //register the callback that happens once the component comes to life
@@ -18,7 +17,6 @@ export default {
       }
       props.model.addObserver(() => {
         state.recommendedActivities = props.model.recommendedActivities;
-        state.forceReRender++;
       });
     });
     // callback to save a new activity
@@ -36,15 +34,16 @@ export default {
 
     return function renderACB(props) {
       //shallow copy of array.
-      const recommendedActivities = state.recommendedActivities.slice();
+      var recommendedActivities = state.recommendedActivities.slice();
       
       console.log("please render RecommendedActivityView with " + recommendedActivities.length + " activities")
+      console.log(recommendedActivities.map(_=> _.activity))
       return (
         <RecommendedActivityView
           saveActivity={saveANewActivityACB}
           removeActivity={RemoveActivityFromRecommendedACB}
           getActivity={receiveMoreInformationACB}
-          activityResults={recommendedActivities}
+          activityResults={state.recommendedActivities}
           loggedIn={getAuth().currentUser !== null}
         />
       );

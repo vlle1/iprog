@@ -172,7 +172,7 @@ export default class ActivityModel {
         if (this.recommendedActivities.filter(activity => activity.key == data.key).length > 0) {
           return ""//console.log("not adding duplicate activity", data, "to recommendedActivities", this.recommendedActivities)
         }
-        this.recommendedActivities.push(data)
+        this.recommendedActivities.push({data})
         this.notifyObservers("recommendedActivitiesChanged")
       }).catch((error) => {
         console.log(error)
