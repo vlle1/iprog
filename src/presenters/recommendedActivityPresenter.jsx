@@ -36,8 +36,6 @@ export default {
       //shallow copy of array.
       var recommendedActivities = state.recommendedActivities.slice();
       
-      console.log("please render RecommendedActivityView with " + recommendedActivities.length + " activities")
-      console.log(recommendedActivities.map(_=> _.activity))
       return (
         <RecommendedActivityView
           saveActivity={saveANewActivityACB}

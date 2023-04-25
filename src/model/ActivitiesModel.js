@@ -178,7 +178,6 @@ export default class ActivityModel {
         console.log(error)
       });
 
-      console.log("recommended: ", this.recommendedActivities)
        
       this.promiseState = [];
    }
@@ -215,7 +214,6 @@ export default class ActivityModel {
       }
          
    }
-   console.log(this.savedfilteredActivites)
    
   }
 

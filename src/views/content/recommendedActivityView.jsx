@@ -6,8 +6,6 @@ export default {
   props: ["saveActivity", "removeActivity", "getActivity", "activityResults", "loggedIn"],
   setup(props) {
     return function render(props) {
-      console.log("rendering " + props.activityResults.length + " activities" + props.activityResults)
-      console.log(props.activityResults)
       return (
         <div>
           <div class="cart" id="cart"></div>
