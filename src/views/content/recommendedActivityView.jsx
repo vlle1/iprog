@@ -40,7 +40,7 @@ export default {
             props.removeActivity(activityResult.data);
           }
           return (
-            <div class="RecommendedActivity">
+            <div>
               <div>
                 <div class="activityCard2">
                   <button
@@ -72,8 +72,7 @@ export default {
                     onClick={SaveActivityACB}
                     ref={addButtonRef}
                   >
-                    {(props.loggedIn ? "Add" : "Log In to Add") ||
-                      (props.saveActivity ? "Add" : "Added")}
+                    {(!props.loggedIn ? "Log In to Add" : props.saveActivity ? "Add" : "Added" )}
                   </button>
                   <div></div>
                 </div>

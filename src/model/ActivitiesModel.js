@@ -138,9 +138,13 @@ export default class ActivityModel {
 
   RemoveActivityFromRecommended(activityToDelete) {
     console.log(activityToDelete.key);
+    
   
-  this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB);
-  return this.recommendedActivities;
+    this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB);
+    this.notifyObservers("filterResultsChanged");
+    return this.recommendedActivities;
+    
+
   function removeRecommendedActivityCB(activity) {
     return activity.data.key !== activityToDelete.key;
   }

@@ -7,6 +7,7 @@
     --button: #333;
     --main: rgba(255, 255, 255, 0.87);
     --interact: #646cff;
+    --text: rgb(255,255,255);
 
     --sidebar-ground: darkslategrey;
     --sidebar-card: #333333;
@@ -31,6 +32,7 @@
     --button: #f9f9f9;
     --main: #213547;
     --interact: #646cff;
+    --text: rgb(0,0,0);
 
     --sidebar-ground: darkslategrey;
     --sidebar-card: #333333;
@@ -201,13 +203,13 @@ button:hover {
 .login-bar {
   width: 100%;
   height: 30px;
-  background: var(--sidebar-main);
+  background: var(--card);
   display: flex;
   border-radius: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-left: 10px;
-  color: var(--ground);
+  color: var(--text);
 }
 
 .login-bar input {
@@ -215,27 +217,27 @@ button:hover {
   border: 0;
   outline: none;
   font-size: 15px;
-  color: var(--ground);
+  color: var(--text);
 }
 
 .sidebar button {
   margin-top: 20px;
   margin-left: 20px;
   background-color: var(--sidebar-main);
-  color: var(--sidebar-ground);
+  color: black;
 }
 
 .activityCard {
   cursor: pointer;
   background-color: var(--card);
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 5px;
   margin-right: 20px;
   margin-left: 10px;
   border-radius: 10px;
   padding-right: 10px;
-  padding-left: 20px;
-  padding-top: 20px;
+  padding-left: 10px;
+  padding-top: 10px;
   padding-bottom: 10px;
   min-width: 500px;
 }
@@ -243,7 +245,7 @@ button:hover {
   position: relative;
   background-color: var(--card);
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   margin-right: 20px;
   border-radius: 10px;
   padding-left: 20px;
@@ -275,10 +277,9 @@ button:hover {
   background-color: var(--card-hover);
 }
 
-.RecommendedActivity {
+.savedActivities {
   padding-top: 5px;
   padding-bottom: 20px;
-  margin-right: 50px;
 }
 
 
@@ -324,6 +325,15 @@ img.loading {
   border-width: 2px;
   padding: 1em;
   width: 100%;
+}
+
+.ownActivity {
+  font-size: 16px; 
+  font-weight: bold; 
+  color: white; 
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
 .cart {

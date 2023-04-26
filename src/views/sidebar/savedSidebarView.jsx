@@ -4,8 +4,8 @@ export default function sidebarView(props) {
         <div class="sidebar">
 
             <h2>Sidebar</h2>
-            <div class="rectangle2">
-            <div style="font-size: 16px; font-weight: bold; color: black; text-align: center;">
+            <div>
+            <div style="font-size: 16px; font-weight: bold; color: white; text-align: center;">
                 Find a saved activity
             </div>
                 <div class="search-bar">
@@ -28,8 +28,8 @@ export default function sidebarView(props) {
 
           
             </div>
-            <div class="rectangle3">
-            <div style="font-size: 16px; font-weight: bold; color: black; text-align: center;">
+            <div>
+            <div class="ownActivity">
                 Add your own activity
             </div>
             <div class="search-bar">
