@@ -43,6 +43,7 @@ export default {
           getActivity={receiveMoreInformationACB}
           activityResults={state.recommendedActivities}
           loggedIn={getAuth().currentUser !== null}
+          savedAct={props.model.savedActivities}
         />
       );
     };

@@ -75,7 +75,7 @@ export default {
                     onClick={SaveActivityACB}
                     ref={addButtonRef}
                   >
-                    {(!props.loggedIn ? "Log In to Add" : props.saveActivity ? "Add" : "Added" )}
+                    {(!props.loggedIn ? "Log In to Add" : (!isActivitySaved(activityResult) ? "Add" : "Added" ))}
                   </button>
                   <div></div>
                 </div>
@@ -83,6 +83,21 @@ export default {
             </div>
           );
         }
+      }
+
+      function isActivitySaved(activityResult){
+        if (props.savedAct == undefined){
+          return false;
+        }
+
+        for (let index = 0; index < props.savedAct.length; index++) {
+          const element = props.savedAct[index];
+          if (element.key == activityResult.data.key){
+            return true;
+          }
+          
+        }
+        return false;
       }
 
 
