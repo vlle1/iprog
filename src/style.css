@@ -228,6 +228,7 @@ button:hover {
 }
 
 .activityCard {
+  position: relative;
   cursor: pointer;
   background-color: var(--card);
   margin-top: 20px;
@@ -235,11 +236,10 @@ button:hover {
   margin-right: 20px;
   margin-left: 10px;
   border-radius: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 100px;
+  padding-left: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
-  min-width: 500px;
 }
 .activityCard2{
   position: relative;

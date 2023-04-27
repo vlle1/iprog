@@ -1,10 +1,11 @@
 import { ref } from "vue";
-const count = ref(0);
 
 export default {
   name: "RecommendedActivity",
   props: ["saveActivity", "removeActivity", "getActivity", "activityResults", "loggedIn"],
   setup(props) {
+    const count = ref(0);
+
     return function render(props) {
       return (
         <div>
@@ -18,6 +19,8 @@ export default {
           </div>
         </div>
       );
+
+      
 
       function displayActivitiesCB(activityResult) {
         if (activityResult && activityResult.data) {
@@ -81,6 +84,7 @@ export default {
           );
         }
       }
+
 
       function renderParticipantsACB(participants) {
         let participantsArr = [];
