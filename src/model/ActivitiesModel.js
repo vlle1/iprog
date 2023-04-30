@@ -33,10 +33,10 @@ export default class ActivityModel {
 
   addSavedActivity(activity) {
     this.savedActivities.push(activity);
+    console.log(this.savedActivities);
     this.notifyObservers(SAVED_CHANGED);
   }
   deleteSavedActivity(activityToDelete) {
-    console.log(activityToDelete)
     this.savedActivities=this.savedActivities.filter(removeActivityCB)
     this.notifyObservers(SAVED_CHANGED);
 

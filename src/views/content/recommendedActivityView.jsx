@@ -1,8 +1,9 @@
 import { ref } from "vue";
 
+
 export default {
   name: "RecommendedActivity",
-  props: ["saveActivity", "removeActivity", "getActivity", "activityResults", "loggedIn"],
+  props: ["saveActivity", "removeActivity", "getActivity", "activityResults", "loggedIn","savedActivities"],
   setup(props) {
     const count = ref(0);
 
@@ -25,6 +26,7 @@ export default {
       function displayActivitiesCB(activityResult) {
         if (activityResult && activityResult.data) {
           const addButtonRef = ref(null);
+          
 
           function SaveActivityACB() {
             props.saveActivity(activityResult.data);
@@ -42,6 +44,7 @@ export default {
           function RemoveActivityACB() {
             props.removeActivity(activityResult.data);
           }
+
           return (
             <div>
               <div>
@@ -70,12 +73,14 @@ export default {
                   </div>
                   <button
                     id="activity"
-                    disabled={!props.loggedIn || !props.saveActivity}
+                    disabled={!props.loggedIn || addButtonChangeACB(activityResult)}
                     class="saveButton"
                     onClick={SaveActivityACB}
                     ref={addButtonRef}
                   >
-                    {(!props.loggedIn ? "Log In to Add" : (!isActivitySaved(activityResult) ? "Add" : "Added" ))}
+                    {/* {(!props.loggedIn ? "Log In to Add" : (!isActivitySavedACB(activityResult.data) ? "Add" : "Added" ))} */}
+                    {(!props.loggedIn ? "Log In to Add" : addButtonChangeACB(activityResult) ? "Added" : "Add" )}
+
                   </button>
                   <div></div>
                 </div>
@@ -85,21 +90,19 @@ export default {
         }
       }
 
-      function isActivitySaved(activityResult){
-        if (props.savedAct == undefined){
-          return false;
+
+      function addButtonChangeACB(activityResult){
+        
+        if (props.savedActivities == null || props.savedActivities == undefined ){
+          return;
         }
 
-        for (let index = 0; index < props.savedAct.length; index++) {
-          const element = props.savedAct[index];
-          if (element.key == activityResult.data.key){
-            return true;
-          }
-          
+        if (props.savedActivities.some(act => act.key === activityResult.data.key)){
+          return true;
         }
+
         return false;
       }
-
 
       function renderParticipantsACB(participants) {
         let participantsArr = [];
