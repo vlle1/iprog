@@ -1,5 +1,5 @@
 import { ref } from "vue";
-
+import userPng from '/static/user.png' // user icon
 
 export default {
   name: "RecommendedActivity",
@@ -108,9 +108,8 @@ export default {
         let participantsArr = [];
 
         for (let i = 0; i < participants; i++) {
-          participantsArr.push(
-            <img key={i} src="/static/user.png" class="participantsPic" />
-          );
+          participantsArr.push(<img key={i} src={userPng} class="participantsPic" />);
+
         }
         return participantsArr;
       }

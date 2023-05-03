@@ -1,4 +1,5 @@
 import {router} from "../../VueRoot"
+import userPng from '/static/user.png' // user icon
 export default function detailView(props){
     return(
     <div class="detailsCard">
@@ -26,7 +27,7 @@ export default function detailView(props){
         let participantsArr = [];
 
         for (let i = 0; i < participants; i++) {
-                participantsArr.push(<img key={i} src="/static/user.png" class="participantsPic" />);
+                participantsArr.push(<img key={i} src={userPng} class="participantsPic" />);
         }
         return participantsArr;
 
