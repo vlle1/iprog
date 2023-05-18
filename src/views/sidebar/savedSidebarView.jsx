@@ -86,7 +86,7 @@ export default function sidebarView(props) {
         var newLink= document.getElementById("link").value;
         var newName= document.getElementById("name").value;
         var newAccessibility= document.getElementById("accesibility").value;
-        console.log(newPrice)
+        //console.log(newPrice)
         const newActivity = {
         activity: newName,
         type: newType,

@@ -12,7 +12,7 @@ export default {
     function register(email, password) {
       createUserWithEmailAndPassword(getAuth(), email, password)
         .then((data) => {
-          console.log("Successfully registered");
+          //console.log("Successfully registered");
           router.push("/");
         })
         .catch((error) => {

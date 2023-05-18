@@ -31,7 +31,7 @@ export default function sidebarView(props) {
         
 
         <div className="form-group">
-          <button onClick={generateACB}>Generate 10 new</button>
+          <button onClick={generateACB}>Generate 5 new</button>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ export default {
     function login(email, password) {
         signInWithEmailAndPassword(getAuth(), email, password)
         .then((data) => {
-          console.log("Successfully logged in.");
+          //console.log("Successfully logged in.");
           router.push("/");
         })
         .catch((error) => {
@@ -34,7 +34,7 @@ export default {
         const provider = new GoogleAuthProvider();
         signInWithPopup(getAuth(), provider)
         .then((data) => {
-            console.log("Successfully logged in.");
+            //console.log("Successfully logged in.");
             router.push("/");
             }
         )
@@ -45,7 +45,7 @@ export default {
     function loginAnonymous() {
         signInAnonymously(getAuth())
         .then((data) => {
-            console.log("Successfully logged in.");
+            //console.log("Successfully logged in.");
             router.push("/");
             }
         )

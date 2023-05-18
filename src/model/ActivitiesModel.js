@@ -12,6 +12,7 @@ const DEFAULT_RECOMMENDED_ACTIVITIES = 5;
 
 export default class ActivityModel {
   constructor() {
+    this.status = -1 // done == 0, busy != 0
     this.observers = []; //as in the lab.
     this.recommendedActivities = []; //array of activity objects   
     this.savedActivities = []; //array of activity objects
@@ -27,13 +28,13 @@ export default class ActivityModel {
     this.priceMin = 0
     this.priceMaxSaved = 1
     this.priceMinSaved = 0
-    this.numerOfResults = 10;
+    this.numerOfResults = DEFAULT_RECOMMENDED_ACTIVITIES;
     //we don't save the form entries for adding an activity
   }
 
   addSavedActivity(activity) {
     this.savedActivities.push(activity);
-    console.log(this.savedActivities);
+    //console.log(this.savedActivities);
     this.notifyObservers(SAVED_CHANGED);
   }
   deleteSavedActivity(activityToDelete) {
@@ -82,7 +83,7 @@ export default class ActivityModel {
   }
 
   reset() {
-    console.log("reset")
+    //console.log("reset")
     this.savedfilteredActivites=[];
     this.filterPeopleSaved = ""
     this.filterTypeSaved = ""
@@ -141,7 +142,7 @@ export default class ActivityModel {
 
 
   RemoveActivityFromRecommended(activityToDelete) {
-    console.log(activityToDelete.key);
+    //console.log(activityToDelete.key);
     
   
     this.recommendedActivities=this.recommendedActivities.filter(removeRecommendedActivityCB);
@@ -170,25 +171,26 @@ export default class ActivityModel {
 
     //API call with those parameters
     //activity?participants=1&price=0.1&type=education
-  filterApi(){
+  async filterApi(){
+    this.status = -1; 
     this.recommendedActivities = [];
     for(let i = 0;i<this.numerOfResults;i++) {
-      recomendedActivitiesFilter(this.filterPeople,this.priceMin,this.priceMax,this.filterType).then((data) => {
+      await recomendedActivitiesFilter(this.filterPeople,this.priceMin,this.priceMax,this.filterType).then((data) => {
         if (data == null || data == undefined) {
           return ""//console.log("api result is null or undefined")
         } 
-        if (this.recommendedActivities.filter(activity => activity.key == data.key).length > 0) {
+        //console.log(this.recommendedActivities, data)
+        if (this.recommendedActivities.filter(activity => activity.data.key == data.key).length > 0) {
+          //console.log("not adding duplicate activity", data, "to recommendedActivities", this.recommendedActivities)
           return ""//console.log("not adding duplicate activity", data, "to recommendedActivities", this.recommendedActivities)
         }
         this.recommendedActivities.push({data})
         this.notifyObservers("recommendedActivitiesChanged")
       }).catch((error) => {
         console.log(error)
-      });
-
-       
-      this.promiseState = [];
+      }).finally( () => this.status--);
    }
+   this.status = 0;
   }
 
 
@@ -201,21 +203,21 @@ export default class ActivityModel {
       let objectPrice = object.price
       let objectType = object.type
       if (this.filterPeopleSaved == "") {
-        console.log("alternativ 1")
+        //console.log("alternativ 1")
         if ((this.filterTypeSaved != "") & (objectType == this.filterTypeSaved) & (objectPrice<= this.priceMaxSaved) & (objectPrice>= this.priceMinSaved)) {
           this.savedfilteredActivites.push(object)
         } 
         
       }
       if (this.filterTypeSaved == "") {
-        console.log("alternativ 2")
+        //console.log("alternativ 2")
         if ((this.filterPeopleSaved != "") & (objectPeopel == this.filterPeopleSaved) & (objectPrice<= this.priceMaxSaved) & (objectPrice>= this.priceMinSaved)) {
-          console.log("alternativ 22")
+          //console.log("alternativ 22")
           this.savedfilteredActivites.push(object)
         } 
       }
       if ((this.filterTypeSaved != "") & (this.filterPeopleSaved != "" )) {
-        console.log("alternativ 3")
+        //console.log("alternativ 3")
         if ((objectType == this.filterTypeSaved) & (objectPeopel == this.filterPeopleSaved) & (objectPrice<= this.priceMaxSaved) & (objectPrice>= this.priceMinSaved)) {
           this.savedfilteredActivites.push(object)
         } 
@@ -243,11 +245,7 @@ export default class ActivityModel {
     
   doSearch() {
     
-    for(let i = 0;i<5;i++) {
-       resolvePromise(recomendedActivities(),this.promiseState);
-      this.recommendedActivities.push(this.promiseState)
-      this.promiseState = [];
-    }
+    this.filterApi();
      
   }
 

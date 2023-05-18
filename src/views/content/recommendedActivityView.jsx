@@ -8,6 +8,11 @@ export default {
     const count = ref(0);
 
     return function render(props) {
+      //no data error
+      if (props.activityResults.length === 1 && props.activityResults[0].hasOwnProperty("data") && props.activityResults[0].data.hasOwnProperty("error")) {
+        return ( <div><h1> No Data </h1><pre>try to adjust the filter criteria.</pre></div>) 
+      }
+
       return (
         <div>
           <div class="cart" id="cart"></div>
@@ -18,6 +23,10 @@ export default {
 
             {props.activityResults.map(displayActivitiesCB)}
           </div>
+          {
+            // check if actually 5 things rendered or less
+            props.activityResults.length < 5 ? <div>Note: According to your filter criteria it was not possible to find as many unique activities in the database as requested.  </div> :""
+          }
         </div>
       );
 

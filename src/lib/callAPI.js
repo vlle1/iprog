@@ -19,7 +19,6 @@ export async function recomendedActivities() {
 //for filter
 export async function generatorActivityFilter(people,priceMinx, priceMax,type) {
 
-
   let toggle= 0;
   let query= ""
 

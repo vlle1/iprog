@@ -28,14 +28,19 @@ export default {
       props.model.currentActivity = activity;
     }
 
-    function RemoveActivityFromRecommendedACB(activityToDelete){
+    function RemoveActivityFromRecommendedACB(activityToDelete) {
       props.model.RemoveActivityFromRecommended(activityToDelete);
     }
 
     return function renderACB(props) {
       //shallow copy of array.
       var recommendedActivities = state.recommendedActivities.slice();
-      
+      if (props.model.status !== 0) {
+        return (
+          <img src="https://cdn-images-1.medium.com/max/800/0*4Gzjgh9Y7Gu8KEtZ.gif"></img>
+        );
+      }
+
       return (
         <RecommendedActivityView
           saveActivity={saveANewActivityACB}
@@ -43,9 +48,12 @@ export default {
           getActivity={receiveMoreInformationACB}
           activityResults={state.recommendedActivities}
           loggedIn={getAuth().currentUser !== null}
-          savedActivities={getAuth().currentUser !== null ? props.model.savedActivities : null}
+          savedActivities={
+            getAuth().currentUser !== null ? props.model.savedActivities : null
+          }
         />
+
       );
     };
-  }
+  },
 };

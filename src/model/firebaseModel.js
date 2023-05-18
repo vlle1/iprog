@@ -28,7 +28,7 @@ function persistenceToModel(persistedData = {}, model) {
     console.log("recommended1 " + persistedData.recommendedAct)
     model.recommendedActivities=[]
   }*/
-  console.log(persistedData)
+  //console.log(persistedData)
   if (persistedData.savedAct !== undefined) {
     model.savedActivities = persistedData.savedAct
   } else {model.savedActivities=[]}
@@ -52,7 +52,7 @@ async function firebaseModelPromise(model) {
     //push set value to firebase
     const user = getAuth().currentUser;
     if (user == null || user == undefined) {
-      console.log("saving to persistance failed: user is null or undefined")
+      //console.log("saving to persistance failed: user is null or undefined")
     }
     set(ref(db, PATH + "/" + user.uid), setValue);
   }
