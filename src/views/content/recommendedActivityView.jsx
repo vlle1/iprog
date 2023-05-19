@@ -3,7 +3,7 @@ import userPng from '/static/user.png' // user icon
 
 export default {
   name: "RecommendedActivity",
-  props: ["saveActivity", "removeActivity", "getActivity", "activityResults", "loggedIn","savedActivities"],
+  props: ["saveActivity", "removeActivity", "getActivity", "activityResults", "loggedIn","savedActivities","unsaveActivity"],
   setup(props) {
     const count = ref(0);
 
@@ -43,15 +43,27 @@ export default {
           }
 
           function addToSavedCB() {
-            // addButtonRef.value.disabled = true;
-            // addButtonRef.value.innerText = "Added";
             count.value++;
             const cartButton = document.getElementById("cart");
             cartButton.innerText = count.value.toString() + " new";
+            
+          }
+
+          function removeFromSavedCB() {
+            if (count.value > 0){
+              count.value--;
+              const cartButton = document.getElementById("cart");
+              cartButton.innerText = count.value.toString() + " new";
+            }
           }
 
           function RemoveActivityACB() {
             props.removeActivity(activityResult.data);
+          }
+
+          function UnsaveActivityACB(){
+            props.unsaveActivity(activityResult.data);
+            removeFromSavedCB();
           }
 
           return (
@@ -82,15 +94,16 @@ export default {
                   </div>
                   <button
                     id="activity"
-                    disabled={!props.loggedIn || addButtonChangeACB(activityResult)}
+                    disabled={!props.loggedIn}
                     class="saveButton"
-                    onClick={SaveActivityACB}
+                    onClick={addButtonChangeACB(activityResult) ? UnsaveActivityACB : SaveActivityACB}
                     ref={addButtonRef}
                   >
                     {/* {(!props.loggedIn ? "Log In to Add" : (!isActivitySavedACB(activityResult.data) ? "Add" : "Added" ))} */}
-                    {(!props.loggedIn ? "Log In to Add" : addButtonChangeACB(activityResult) ? "Added" : "Add" )}
-
+                    {(!props.loggedIn ? "Log In to Add" : addButtonChangeACB(activityResult) ? "Remove": "Add")}
+                    
                   </button>
+                  <button id="UnsaveBtn" onClick={UnsaveActivityACB}>Remove</button>
                   <div></div>
                 </div>
               </div>

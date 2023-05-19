@@ -32,6 +32,10 @@ export default {
       props.model.RemoveActivityFromRecommended(activityToDelete);
     }
 
+    function deleteActivitySavedACB(activityToDelete){
+      props.model.deleteSavedActivity(activityToDelete)
+    }
+
     return function renderACB(props) {
       //shallow copy of array.
       var recommendedActivities = state.recommendedActivities.slice();
@@ -51,6 +55,7 @@ export default {
           savedActivities={
             getAuth().currentUser !== null ? props.model.savedActivities : null
           }
+          unsaveActivity={deleteActivitySavedACB}
         />
 
       );
