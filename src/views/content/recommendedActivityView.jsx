@@ -103,7 +103,7 @@ export default {
                     {(!props.loggedIn ? "Log In to Add" : addButtonChangeACB(activityResult) ? "Remove": "Add")}
                     
                   </button>
-                  <button id="UnsaveBtn" onClick={UnsaveActivityACB}>Remove</button>
+                  
                   <div></div>
                 </div>
               </div>
